@@ -7,6 +7,7 @@ import sampleModule from './moduleDataExample.js';
 export default function App() {
     return (
     <>
+      <SignIn />
       <Module module={sampleModule} />
     </>
   );
