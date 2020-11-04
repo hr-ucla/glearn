@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import FontAwesome, { Icons, IconTypes } from 'react-native-fontawesome';
+import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function JuniorSection() {
   const [ page, setPage ] = useState('');
@@ -24,7 +23,15 @@ export default function JuniorSection() {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>Junior Section</Text>
-      <FlatList data ={junior} renderItem={({item}) => <Text style={styles.listItem}>{item}</Text>} keyExtractor={item=>item} />
+      <FlatList
+        data ={junior}
+        renderItem={({item}) => (
+        <TouchableOpacity
+          onPress={() => console.log("clicked")}>
+          <Text style={styles.listItem}>{item}</Text>
+        </TouchableOpacity>
+        )}
+      />
       <StatusBar style="auto" />
     </SafeAreaView>
   )
@@ -48,6 +55,6 @@ const styles = StyleSheet.create({
     padding:10,
     fontWeight:"bold",
     width:"100%",
-    fontSize:30,
+    fontSize:20,
   }
 });

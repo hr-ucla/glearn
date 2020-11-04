@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 export default function Home() {
   const [ page, setPage ] = useState('');
@@ -15,7 +15,15 @@ export default function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>  SEI - Los Angeles - August 2020 - HRLA39</Text>
-      <FlatList data ={home} renderItem={({item}) => <Text style={styles.listItem}>{item}</Text>} keyExtractor={item=>item} />
+      <FlatList
+        data ={home}
+        renderItem={({item}) => (
+        <TouchableOpacity
+          onPress={() => console.log("clicked")}>
+          <Text style={styles.listItem}>{item}</Text>
+        </TouchableOpacity>
+        )}
+      />
       <StatusBar style="auto" />
     </SafeAreaView>
   )

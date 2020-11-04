@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import FontAwesome, { Icons, IconTypes } from 'react-native-fontawesome';
+import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
 
 export default function SeniorSection() {
   const [ page, setPage ] = useState('');
@@ -13,7 +13,15 @@ export default function SeniorSection() {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>Student Wiki </Text>
-      <FlatList data ={senior} renderItem={({item}) => <Text style={styles.listItem}>{item}</Text>} keyExtractor={item=>item} />
+      <FlatList
+        data ={senior}
+        renderItem={({item}) => (
+        <TouchableOpacity
+          onPress={() => console.log("clicked")}>
+          <Text style={styles.listItem}>{item}</Text>
+        </TouchableOpacity>
+        )}
+      />
       <StatusBar style="auto" />
     </SafeAreaView>
   )
