@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: '#f79020',
     color: '#fff',
+    marginBottom:25,
   },
   listItem:{
     flex: 1,
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 50,
-    backgroundColor: "#dddddd",
+    backgroundColor: "white",
     borderTopWidth: 1,
     borderTopColor: 'white',
     marginTop:5,

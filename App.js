@@ -6,9 +6,9 @@ import QuizDescription from './QuizDescription.js';
 import QuizContent from './QuizContent.js';
 import Module from './Module.js';
 import sampleModule from './moduleDataExample.js';
-import StudentWiki from './pages/StudentWiki.js';
+import Home from './pages/Home.js';
 export default function App() {
     return (
-    <StudentWiki />
+    <Home />
      );
 }
