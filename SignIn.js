@@ -98,14 +98,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     width: '80%',
     textAlign: 'center',
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-    elevation: 7,
   },
   remember: {
     marginTop: '2%',
