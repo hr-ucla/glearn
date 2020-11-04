@@ -9,6 +9,6 @@ import sampleModule from './moduleDataExample.js';
 import StudentWiki from './pages/StudentWiki.js';
 export default function App() {
     return (
-    <SignIn />
+    <StudentWiki />
      );
 }
