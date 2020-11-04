@@ -3,20 +3,28 @@ import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import FontAwesome, { Icons, IconTypes } from 'react-native-fontawesome';
 
-export default function App() {
+export default function JuniorSection() {
   const [ page, setPage ] = useState('');
 
-  const mainFolder = [
-    "Student Wiki",
-    "Junior Phase",
-    "Senior Phase",
-    "Toy Problems",
-    "Quizzes",
+  const junior = [
+    "Orientation and Precourse",
+    "Data Modeling and Classes",
+    "Inheritance Patterns",
+    "Algorithms",
+    "Browser Apps, jQuery, and AJAX",
+    "React",
+    "Redux",
+    "Servers and Node",
+    "REST and CRUD",
+    "Databases",
+    "Authentication",
+    "Mini Apps",
+    "Full Stack Review",
   ]
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.listTitle}>  SEI - Los Angeles - August 2020 - HRLA39</Text>
-      <FlatList data ={mainFolder} renderItem={({item}) => <Text style={styles.listItem}>{item}</Text>} keyExtractor={item=>item} />
+      <Text style={styles.listTitle}>Junior Section</Text>
+      <FlatList data ={junior} renderItem={({item}) => <Text style={styles.listItem}>{item}</Text>} keyExtractor={item=>item} />
       <StatusBar style="auto" />
     </SafeAreaView>
   )
