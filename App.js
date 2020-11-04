@@ -10,10 +10,6 @@ import sampleModule from './moduleDataExample.js';
 export default function App() {
     return (
     <>
-      <QuizDescription />
-      <SignIn />
-      <Deliverables />
-      <Module module={sampleModule} />
     </>
   );
 }

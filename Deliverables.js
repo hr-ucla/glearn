@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { SectionList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, SectionList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Deliverables() {
@@ -10,7 +10,7 @@ export default function Deliverables() {
       size={40}
     />;
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <SectionList
           sections={[
             {title: 'Week 1', data: ['Value vs Reference', 'Scope & Closures', 'Keyword "this"', 'Classes', 'Prototypes', 'Keyword "new"']},
@@ -47,14 +47,14 @@ export default function Deliverables() {
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
           keyExtractor={(item, index) => index}
         />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   paddingTop: 40,
+   backgroundColor: '#000',
   },
   sectionHeader: {
     paddingTop: 2,

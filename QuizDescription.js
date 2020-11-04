@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Button, Image, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, Image, SafeAreaView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 
 export default function QuizDescription() {
@@ -23,29 +23,31 @@ export default function QuizDescription() {
     />;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Checkpoint: Value vs Reference</Text>
-      <View>
-        <View style={styles.logistics}>
-          {questions}
-          <Text style={styles.info}>12 Questions</Text>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#000'}}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Checkpoint: Value vs Reference</Text>
+        <View>
+          <View style={styles.logistics}>
+            {questions}
+            <Text style={styles.info}>12 Questions</Text>
+          </View>
+          <View style={styles.logistics}>
+            {time}
+            <Text style={styles.info}>No Time Limit</Text>
+          </View>
+          <View style={styles.logistics}>
+            {attempts}
+            <Text style={styles.info}>Unlimited Attempts Remaining</Text>
+          </View>
         </View>
-        <View style={styles.logistics}>
-          {time}
-          <Text style={styles.info}>No Time Limit</Text>
-        </View>
-        <View style={styles.logistics}>
-          {attempts}
-          <Text style={styles.info}>Unlimited Attempts Remaining</Text>
-        </View>
+        <Text style={styles.description}>This assessment contains multiple choice challenges. Answer as many questions as possible and submit the entire assessment at once when you're done.</Text>
+        <TouchableOpacity
+          style={styles.start}
+        >
+          <Text style={styles.startText}>Retake Assessment</Text>
+        </TouchableOpacity>
       </View>
-      <Text style={styles.description}>This assessment contains multiple choice challenges. Answer as many questions as possible and submit the entire assessment at once when you're done.</Text>
-      <TouchableOpacity
-        style={styles.start}
-      >
-        <Text style={styles.startText}>Retake Assessment</Text>
-      </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 
