@@ -1,25 +1,71 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function JuniorSection() {
   const [ page, setPage ] = useState('');
 
   const junior = [
-    "Orientation and Precourse",
-    "Data Modeling and Classes",
-    "Inheritance Patterns",
-    "Algorithms",
-    "Browser Apps, jQuery, and AJAX",
-    "React",
-    "Redux",
-    "Servers and Node",
-    "REST and CRUD",
-    "Databases",
-    "Authentication",
-    "Mini Apps",
-    "Full Stack Review",
+    {
+      id:"orientationPrecourse",
+      name: "Orientation and Precourse",
+    },
+    {
+      id:"dataModeling",
+      name: "Data Modeling and Classes",
+    },
+    {
+      id:"inheritance",
+      name: "Inheritance Patterns",
+    },
+    {
+      id:"algorithms",
+      name: "Algorithms",
+    },
+    {
+      id:"browserApps",
+      name: "Browser Apps, jQuery, and AJAX",
+    },
+    {
+      id:"react",
+      name: "React",
+    },
+    {
+      id:"redux",
+      name: "Redux",
+    },
+    {
+      id:"node",
+      name: "Servers and Node",
+    },
+    {
+      id:"restCrud",
+      name: "REST and CRUD",
+    },
+    {
+      id:"databases",
+      name: "Databases",
+    },
+    {
+      id:"authentication",
+      name: "Authentication",
+    },
+    {
+      id:"miniApps",
+      name: "Mini Apps",
+    },
+    {
+      id:"fullstack",
+      name: "Full Stack Review",
+    }
   ]
+  const check =
+  <Icon
+    name="check-circle"
+    color="#19a5b3"
+    size={40}
+  />;
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>Junior Section</Text>
@@ -27,10 +73,13 @@ export default function JuniorSection() {
         data ={junior}
         renderItem={({item}) => (
         <TouchableOpacity
-          onPress={() => console.log("clicked")}>
-          <Text style={styles.listItem}>{item}</Text>
+          onPress={() => {
+            setPage(item.id),
+            console.log(page)}}>
+          <Text style={styles.listItem}>{item.name}</Text>
         </TouchableOpacity>
         )}
+        keyExtractor={item => item.id}
       />
       <StatusBar style="auto" />
     </SafeAreaView>
@@ -41,20 +90,34 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'flex-start',
   },
   listTitle:{
-    fontWeight:"bold",
-    width:"100%",
-    marginTop:30,
-    marginBottom:40,
-    fontSize: 20,
+    paddingTop: 2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 2,
+    fontSize: 18,
+    fontWeight: 'bold',
+    backgroundColor: '#f79020',
+    color: '#fff',
   },
   listItem:{
-    margin:10,
-    padding:10,
-    fontWeight:"bold",
-    width:"100%",
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 75,
+    backgroundColor: "#dddddd",
+    borderTopWidth: 1,
+    borderTopColor: 'white',
+    marginTop:5,
     fontSize:20,
+    fontWeight:"bold",
+  },
+  check:{
+    flex: 1,
+    alignItems: 'flex-end',
+    marginRight: '2%',
   }
 });
+
