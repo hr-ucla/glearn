@@ -8,6 +8,12 @@ const { Value, timing } = Animated
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
+const backButton = 
+<Icon
+  name="arrow-left"
+  color="black"
+  size={35}
+/>;
 
 
 
@@ -119,7 +125,7 @@ class Search1 extends React.Component {
                   onPress={() => {
                   this.props.setPage("home")
                   }}>
-                  <Text>BACK </Text>
+                  <Text>{backButton} </Text>
               </TouchableOpacity>
                 <View>
                   <TouchableOpacity
@@ -223,7 +229,7 @@ class Search1 extends React.Component {
                   onPress={() => {
                   this.props.setPage("junior")
                   }}>
-                  <Text>BACK </Text>
+                  <Text>{backButton} </Text>
               </TouchableOpacity>
                 <View>
                   <TouchableOpacity
