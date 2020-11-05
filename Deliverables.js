@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { SafeAreaView, SectionList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Search1 from './SearchBar/Search1.js'
 
 const check =
   <Icon
@@ -13,9 +14,10 @@ const check =
 //   return {title: week.title, data: week.data}
 // });
 
-export default function Deliverables() {
+export default function Deliverables(props) {
   return (
     <SafeAreaView style={styles.container}>
+      <Search1 setPage={props.setPage} page={props.page}/>
       <SectionList
           sections={[
             {title: 'Week 1', data: ['Value vs Reference', 'Scope & Closures', 'Keyword "this"', 'Classes', 'Prototypes', 'Keyword "new"']},
@@ -60,7 +62,7 @@ export default function Deliverables() {
 const styles = StyleSheet.create({
   container: {
    flex: 1,
-   backgroundColor: '#000',
+   backgroundColor: 'white',
   },
   sectionHeader: {
     paddingTop: 2,

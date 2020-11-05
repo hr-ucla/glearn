@@ -4,61 +4,57 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Search1 from '../SearchBar/Search1.js'
 
+export default function DataModeling(props) {
 
-export default function JuniorSection(props) {
-  const junior = [
+  const data = [
     {
-      id:"orientationPrecourse",
-      name: "Orientation and Precourse",
+      id:"objectOriented",
+      name: "Object-Oriented Programming",
     },
     {
-      id:"dataModeling",
-      name: "Data Modeling and Classes",
+      id:"solutionDataStructures",
+      name: "Solution: Data Structures",
     },
     {
-      id:"inheritance",
-      name: "Inheritance Patterns",
+      id:"problemSolving",
+      name: "Problem Solving Process",
     },
     {
-      id:"algorithms",
-      name: "Algorithms",
+      id:"whiteboarding",
+      name: "Whiteboarding",
     },
     {
-      id:"browserApps",
-      name: "Browser Apps, jQuery, and AJAX",
+      id:"classes",
+      name: "JS Review: Classes",
     },
     {
-      id:"react",
-      name: "React",
+      id:"complexityAnalysis",
+      name: "Complexity Analysis",
     },
     {
-      id:"redux",
-      name: "Redux",
+      id:"advancedDataStructures",
+      name: "Advanced Data Structures",
     },
     {
-      id:"node",
-      name: "Servers and Node",
+      id:"codingBestPractices",
+      name: "Coding Best Practices",
     },
     {
-      id:"restCrud",
-      name: "REST and CRUD",
+      id:"algorithm",
+      name: "Algorithm of an Algorithm",
     },
     {
-      id:"databases",
-      name: "Databases",
+      id:"hashTables",
+      name: "How Hash Tables Work",
     },
     {
-      id:"authentication",
-      name: "Authentication",
+      id:"functions",
+      name: "JS Review: Functions",
     },
     {
-      id:"miniApps",
-      name: "Mini Apps",
+      id:"Callbacks",
+      name: "JS Review: Callbacks",
     },
-    {
-      id:"fullstack",
-      name: "Full Stack Review",
-    }
   ]
   const check =
   <Icon
@@ -76,16 +72,14 @@ export default function JuniorSection(props) {
   return (
     <View style={styles.container}>
       <Search1 setPage={props.setPage} page={props.page}/>
-      <Text style={styles.listTitle}>Junior Section</Text>
+      <Text style={styles.listTitle}>Orientation and Precourse</Text>
       <FlatList
-        data ={junior}
+        data ={data}
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            if (item.id === "orientationPrecourse" || item.id === "dataModeling"|| item.id === "inheritance" ){
             props.setPage(item.id)
-            }
-          }}>
+            }}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>
