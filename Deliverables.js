@@ -2,13 +2,18 @@ import React, {useState} from 'react';
 import { SafeAreaView, SectionList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+const check =
+  <Icon
+    name="check-circle"
+    color="#19a5b3"
+    size={40}
+  />;
+
+// const data = deliverablesData.map((week, index) => {
+//   return {title: week.title, data: week.data}
+// });
+
 export default function Deliverables() {
-  const check =
-    <Icon
-      name="check-circle"
-      color="#19a5b3"
-      size={40}
-    />;
   return (
     <SafeAreaView style={styles.container}>
       <SectionList
@@ -29,6 +34,7 @@ export default function Deliverables() {
           ]}
           renderItem={({item}) =>
             <TouchableOpacity
+              onPress={item.id}
               style={styles.item}
             >
               <View style={styles.leftSide}>
