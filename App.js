@@ -10,6 +10,7 @@ import deliverablesData from './deliverablesData.js';
 
 export default function App() {
   return (
-    <Home/>
+    <>
+    </>
   );
 }
