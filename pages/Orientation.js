@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import JuniorSection from './JuniorSection';
+import Search1 from '../SearchBar/Search1.js'
 
 export default function Orientation(props) {
   const orientation = [
@@ -61,14 +61,9 @@ export default function Orientation(props) {
   />;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <Search1 setPage={props.setPage} page={props.page}/>
       <Text style={styles.listTitle}>Orientation and Precourse</Text>
-      <TouchableOpacity
-        onPress={() => {
-            props.setPage("junior"),
-            console.log(props.page)}}>
-        <Text>BACK </Text>
-      </TouchableOpacity>
       <FlatList
         data ={orientation}
         renderItem={({item}) => (
@@ -87,7 +82,7 @@ export default function Orientation(props) {
         keyExtractor={item => item.id}
       />
       <StatusBar style="auto" />
-    </SafeAreaView>
+    </View>
   )
 }
 

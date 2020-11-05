@@ -10,10 +10,10 @@ import Orientation from './Orientation.js'
 import DataModeling from './DataModeling.js';
 import InheritancePatterns from './Inheritance.js';
 
-import Search from '../SearchBar/Search.js'
+import Search1 from '../SearchBar/Search1.js'
 
 export default function Home() {
-  const [ page, setPage ] = useState('');
+  const [ page, setPage ] = useState('home');
   const check =
   <Icon
     name="check-circle"
@@ -73,7 +73,8 @@ export default function Home() {
     return <WelcomeToHackReactor />  }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <Search1 setPage={setPage} page={page}/>
       <Text style={styles.listTitle}>  SEI - Los Angeles - August 2020 - HRLA39</Text>
       <FlatList
         data ={home}
@@ -93,7 +94,8 @@ export default function Home() {
         keyExtractor={item => item.id}
       />
       <StatusBar style="auto" />
-    </SafeAreaView>  )
+    </View>
+    )
   
 }
 const styles = StyleSheet.create({
