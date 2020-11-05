@@ -1,10 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
+import { render } from 'react-dom';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import StudentWiki from './StudentWiki.js';
+import JuniorSection from './JuniorSection.js';
+import SeniorSection from './SeniorSection.js';
+import Deliverables from '../Deliverables.js';
 
 export default function Home() {
   const [ page, setPage ] = useState('');
+  const [ previous, setPrevious ] = useState('');
   const check =
   <Icon
     name="check-circle"
@@ -28,7 +34,7 @@ export default function Home() {
     },
     {
       id:"senior",
-      name: "Senior Phase",
+      name: "Senior Section",
     },
     {
       id:"toyProblems",
@@ -39,6 +45,14 @@ export default function Home() {
       name: "Quizzes",
     }
   ]
+  if (page === "studentWiki") {
+    return <StudentWiki  />  }
+  if (page === "junior") {
+      return <JuniorSection  />  }
+  if (page === "senior") {
+    return <SeniorSection />  }
+  if (page === "quizzes") {
+    return <Deliverables  />  }
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>  SEI - Los Angeles - August 2020 - HRLA39</Text>
@@ -47,6 +61,7 @@ export default function Home() {
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
+            setPrevious("home")
             setPage(item.id),
             console.log(page)}}>
           <View style={styles.leftSide}>

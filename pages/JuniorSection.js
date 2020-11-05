@@ -2,9 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Orientation from './Orientation.js'
+import Home from './Home.js'
 
-export default function JuniorSection() {
+export default function JuniorSection(props) {
   const [ page, setPage ] = useState('');
+  const [ previous, setPrevious ] = useState('');
 
   const junior = [
     {
@@ -72,17 +75,29 @@ export default function JuniorSection() {
     color="grey"
     size={35}
   />;
+  if (page === "orientationPrecourse") {
+    return <Orientation />  }
+  if (page === "home") {
+      return <Home />  }
 
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>Junior Section</Text>
+      <TouchableOpacity
+        onPress={() => {
+            setPage("home"),
+            console.log(page)}}>
+        <Text>BACK </Text>
+      </TouchableOpacity>
       <FlatList
         data ={junior}
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            setPage(item.id),
-            console.log(page)}}>
+            setPage(item.id)
+            setPrevious("home")
+            console.log(previous)
+          }}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>

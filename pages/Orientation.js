@@ -2,28 +2,53 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Home from './Home.js'
+import JuniorSection from './JuniorSection';
 
-export default function StudentWiki() {
-  const [ page, setPage ] = useState('');
+export default function Orientation(props) {
+    const [ page, setPage ] = useState('');
+    const [ previous, setPrevious ] = useState('');
 
-  const student = [
+  const orientation = [
     {
-      id:"orientations",
-      name: "Orientations",
+      id:"recursionReview",
+      name: "Exercise: Recursion Review",
     },
     {
-      id:"technicalKnowledge",
-      name: "Technical Knowledge",
+      id:"underbar",
+      name: "Exercise: Underbar Review",
     },
     {
-      id:"guidance",
-      name: "Guidance",
+      id:"welcome",
+      name: "Welcome to Hack Reactor",
     },
     {
-      id:"referenceResources",
-      name: "Reference Resources",
-    }
+      id:"lifeAtHackReactor",
+      name: "Life at Hack Reactor",
+    },
+    {
+      id:"gitWorkflow",
+      name: "Git Workflow Pairs",
+    },
+    {
+      id:"effectivePairing",
+      name: "Effective Pairing and Feedback",
+    },
+    {
+      id:"debugging",
+      name: "Debugging Tools",
+    },
+    {
+      id:"succeed",
+      name: "How to Succeed",
+    },
+    {
+      id:"javascriptReview1",
+      name: "JavaScript Revew Part 1",
+    },
+    {
+      id:"javascriptReview2",
+      name: "JavaScript Review Part 2",
+    },
   ]
   const check =
   <Icon
@@ -37,20 +62,23 @@ export default function StudentWiki() {
     color="grey"
     size={35}
   />;
-  
-  if (page === "home") {
-    return <Home />  }
+
+
+  if (page === "recursionReview") {
+    return <Orientation />  }
+  if (page === "junior") {
+        return <JuniorSection />  }
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.listTitle}>Student Wiki </Text>
+      <Text style={styles.listTitle}>Orientation and Precourse</Text>
       <TouchableOpacity
         onPress={() => {
-            setPage("home"),
+            setPage("junior"),
             console.log(page)}}>
         <Text>BACK </Text>
       </TouchableOpacity>
       <FlatList
-        data ={student}
+        data ={orientation}
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
@@ -81,11 +109,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     paddingBottom: 2,
-    fontSize: 25,
+    fontSize: 18,
     fontWeight: 'bold',
     backgroundColor: '#f79020',
     color: '#fff',
-    marginBottom: 25,
+    marginBottom:25,
   },
   listItem:{
     flex: 1,
@@ -114,3 +142,4 @@ const styles = StyleSheet.create({
     marginRight: '2%',
   },
 });
+

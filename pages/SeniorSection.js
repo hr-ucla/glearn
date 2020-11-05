@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Home from './Home.js'
 
 export default function SeniorSection() {
   const [ page, setPage ] = useState('');
@@ -28,9 +29,18 @@ export default function SeniorSection() {
     color="grey"
     size={35}
   />;
+  
+  if (page === "home") {
+    return <Home />  }
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>Student Wiki </Text>
+      <TouchableOpacity
+        onPress={() => {
+            setPage("home"),
+            console.log(page)}}>
+        <Text>BACK </Text>
+      </TouchableOpacity>
       <FlatList
         data ={senior}
         renderItem={({item}) => (
