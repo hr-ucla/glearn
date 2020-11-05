@@ -2,11 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import JuniorSection from './JuniorSection';
 
-export default function DataModeling() {
-    const [ page, setPage ] = useState('');
-    const [ previous, setPrevious ] = useState('');
+export default function DataModeling(props) {
 
   const data = [
     {
@@ -72,17 +69,13 @@ export default function DataModeling() {
   />;
 
 
-  if (page === "recursionReview") {
-    return <Orientation />  }
-  if (page === "junior") {
-        return <JuniorSection />  }
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>Orientation and Precourse</Text>
       <TouchableOpacity
         onPress={() => {
-            setPage("junior"),
-            console.log(page)}}>
+            props.setPage("junior")
+          }}>
         <Text>BACK </Text>
       </TouchableOpacity>
       <FlatList
@@ -90,8 +83,8 @@ export default function DataModeling() {
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            setPage(item.id),
-            console.log(page)}}>
+            props.setPage(item.id)
+            }}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>

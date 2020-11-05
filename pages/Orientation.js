@@ -5,9 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import JuniorSection from './JuniorSection';
 
 export default function Orientation(props) {
-    const [ page, setPage ] = useState('');
-    const [ previous, setPrevious ] = useState('');
-
   const orientation = [
     {
       id:"recursionReview",
@@ -63,18 +60,13 @@ export default function Orientation(props) {
     size={35}
   />;
 
-
-  if (page === "recursionReview") {
-    return <Orientation />  }
-  if (page === "junior") {
-        return <JuniorSection />  }
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>Orientation and Precourse</Text>
       <TouchableOpacity
         onPress={() => {
-            setPage("junior"),
-            console.log(page)}}>
+            props.setPage("junior"),
+            console.log(props.page)}}>
         <Text>BACK </Text>
       </TouchableOpacity>
       <FlatList
@@ -82,8 +74,8 @@ export default function Orientation(props) {
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            setPage(item.id),
-            console.log(page)}}>
+            props.setPage(item.id),
+            console.log(props.page)}}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>

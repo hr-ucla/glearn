@@ -1,16 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { render } from 'react-dom';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import StudentWiki from './StudentWiki.js';
 import JuniorSection from './JuniorSection.js';
 import SeniorSection from './SeniorSection.js';
 import Deliverables from '../Deliverables.js';
+import Orientation from './Orientation.js'
+import DataModeling from './DataModeling.js';
+import InheritancePatterns from './Inheritance.js';
+
+import Search from '../SearchBar/Search.js'
 
 export default function Home() {
   const [ page, setPage ] = useState('');
-  const [ previous, setPrevious ] = useState('');
   const check =
   <Icon
     name="check-circle"
@@ -45,14 +48,30 @@ export default function Home() {
       name: "Quizzes",
     }
   ]
+
   if (page === "studentWiki") {
-    return <StudentWiki  />  }
+    return <StudentWiki page={page} setPage={setPage}/>  }
   if (page === "junior") {
-      return <JuniorSection  />  }
+      return <JuniorSection page={page} setPage={setPage}/>  }
   if (page === "senior") {
-    return <SeniorSection />  }
+    return <SeniorSection page={page} setPage={setPage}/>  }
   if (page === "quizzes") {
-    return <Deliverables  />  }
+    return <Deliverables  page={page} setPage={setPage}/>  }
+  if (page === "recursionReview") {
+    return <Orientation page={page} setPage={setPage}/>  }
+  if (page === "orientationPrecourse") {
+    return <Orientation page={page} setPage={setPage}/>  }
+  if (page === "dataModeling") {
+    return <DataModeling page={page} setPage={setPage}/>  }
+  if (page === "inheritance") {
+    return <InheritancePatterns page={page} setPage={setPage}/>  }
+  if (page === "recursionReview") {
+    return <RecursionReview />  }
+  if (page === "underbar") {
+    return <Underbar />  }
+  if (page === "welcome") {
+    return <WelcomeToHackReactor />  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.listTitle}>  SEI - Los Angeles - August 2020 - HRLA39</Text>
@@ -61,7 +80,6 @@ export default function Home() {
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            setPrevious("home")
             setPage(item.id),
             console.log(page)}}>
           <View style={styles.leftSide}>
@@ -75,10 +93,9 @@ export default function Home() {
         keyExtractor={item => item.id}
       />
       <StatusBar style="auto" />
-    </SafeAreaView>
-  )
+    </SafeAreaView>  )
+  
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
