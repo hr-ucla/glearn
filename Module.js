@@ -23,12 +23,18 @@ export default function Module(props) {
       lineHeight: 30,
       marginTop: 10,
     },
+    code: {
+      backgroundColor: 'rgb(248, 248, 248)',
+      fontSize: 16,
+      fontFamily: 'Menlo',
+    },
     codesnippet: {
       color: 'rgb(56, 58, 66)',
       backgroundColor: 'rgb(230, 230, 240)',
       fontSize: 12,
       lineHeight: 15,
       marginTop: 30,
+      marginBottom: 20,
       padding: 16,
       fontFamily: `Menlo`,
     },
