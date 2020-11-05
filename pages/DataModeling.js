@@ -2,68 +2,61 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Orientation from './Orientation.js'
-import Home from './Home.js'
-import DataModeling from './DataModeling.js';
-import InheritancePatterns from './Inheritance.js';
+import JuniorSection from './JuniorSection';
 
-export default function JuniorSection(props) {
-  const [ page, setPage ] = useState('');
-  const [ previous, setPrevious ] = useState('');
+export default function DataModeling() {
+    const [ page, setPage ] = useState('');
+    const [ previous, setPrevious ] = useState('');
 
-  const junior = [
+  const data = [
     {
-      id:"orientationPrecourse",
-      name: "Orientation and Precourse",
+      id:"objectOriented",
+      name: "Object-Oriented Programming",
     },
     {
-      id:"dataModeling",
-      name: "Data Modeling and Classes",
+      id:"solutionDataStructures",
+      name: "Solution: Data Structures",
     },
     {
-      id:"inheritance",
-      name: "Inheritance Patterns",
+      id:"problemSolving",
+      name: "Problem Solving Process",
     },
     {
-      id:"algorithms",
-      name: "Algorithms",
+      id:"whiteboarding",
+      name: "Whiteboarding",
     },
     {
-      id:"browserApps",
-      name: "Browser Apps, jQuery, and AJAX",
+      id:"classes",
+      name: "JS Review: Classes",
     },
     {
-      id:"react",
-      name: "React",
+      id:"complexityAnalysis",
+      name: "Complexity Analysis",
     },
     {
-      id:"redux",
-      name: "Redux",
+      id:"advancedDataStructures",
+      name: "Advanced Data Structures",
     },
     {
-      id:"node",
-      name: "Servers and Node",
+      id:"codingBestPractices",
+      name: "Coding Best Practices",
     },
     {
-      id:"restCrud",
-      name: "REST and CRUD",
+      id:"algorithm",
+      name: "Algorithm of an Algorithm",
     },
     {
-      id:"databases",
-      name: "Databases",
+      id:"hashTables",
+      name: "How Hash Tables Work",
     },
     {
-      id:"authentication",
-      name: "Authentication",
+      id:"functions",
+      name: "JS Review: Functions",
     },
     {
-      id:"miniApps",
-      name: "Mini Apps",
+      id:"Callbacks",
+      name: "JS Review: Callbacks",
     },
-    {
-      id:"fullstack",
-      name: "Full Stack Review",
-    }
   ]
   const check =
   <Icon
@@ -77,33 +70,28 @@ export default function JuniorSection(props) {
     color="grey"
     size={35}
   />;
-  if (page === "orientationPrecourse") {
-    return <Orientation />  }
-  if (page === "dataModeling") {
-    return <DataModeling />  }
-  if (page === "inheritance") {
-    return <InheritancePatterns />  }
-  if (page === "home") {
-      return <Home />  }
 
+
+  if (page === "recursionReview") {
+    return <Orientation />  }
+  if (page === "junior") {
+        return <JuniorSection />  }
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.listTitle}>Junior Section</Text>
+      <Text style={styles.listTitle}>Orientation and Precourse</Text>
       <TouchableOpacity
         onPress={() => {
-            setPage("home"),
+            setPage("junior"),
             console.log(page)}}>
         <Text>BACK </Text>
       </TouchableOpacity>
       <FlatList
-        data ={junior}
+        data ={data}
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            setPage(item.id)
-            setPrevious("home")
-            console.log(previous)
-          }}>
+            setPage(item.id),
+            console.log(page)}}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>

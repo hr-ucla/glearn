@@ -2,68 +2,49 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Orientation from './Orientation.js'
-import Home from './Home.js'
-import DataModeling from './DataModeling.js';
-import InheritancePatterns from './Inheritance.js';
+import JuniorSection from './JuniorSection';
 
-export default function JuniorSection(props) {
-  const [ page, setPage ] = useState('');
-  const [ previous, setPrevious ] = useState('');
+export default function InheritancePatterns() {
+    const [ page, setPage ] = useState('');
+    const [ previous, setPrevious ] = useState('');
 
-  const junior = [
+  const inheritance = [
     {
-      id:"orientationPrecourse",
-      name: "Orientation and Precourse",
+      id:"beesBeesBees",
+      name: "Exercise: BeesBeesBees",
     },
     {
-      id:"dataModeling",
-      name: "Data Modeling and Classes",
+      id:"subClassDanceParty",
+      name: "Exercise: Subclass Dance Party",
     },
     {
-      id:"inheritance",
-      name: "Inheritance Patterns",
+      id:"solutionSubclass",
+      name: "Solution: Subclass Dance Party",
     },
     {
-      id:"algorithms",
-      name: "Algorithms",
+      id:"6ees6ees6ees",
+      name: "Exercise: 6ees6ees6ees",
     },
     {
-      id:"browserApps",
-      name: "Browser Apps, jQuery, and AJAX",
+      id:"introSubclass",
+      name: "Intro to Subclass Dance Party",
     },
     {
-      id:"react",
-      name: "React",
+      id:"tDD",
+      name: "Test Driven Development",
     },
     {
-      id:"redux",
-      name: "Redux",
+      id:"functionalSubclasses",
+      name: "Functional Subclasses",
     },
     {
-      id:"node",
-      name: "Servers and Node",
+      id:"pseudoclassicalSubclasses",
+      name: "Pseudoclassical Subclasses",
     },
     {
-      id:"restCrud",
-      name: "REST and CRUD",
+      id:"hTMLCSSjQuery",
+      name: "HTML, CSS, and jQuery",
     },
-    {
-      id:"databases",
-      name: "Databases",
-    },
-    {
-      id:"authentication",
-      name: "Authentication",
-    },
-    {
-      id:"miniApps",
-      name: "Mini Apps",
-    },
-    {
-      id:"fullstack",
-      name: "Full Stack Review",
-    }
   ]
   const check =
   <Icon
@@ -77,33 +58,28 @@ export default function JuniorSection(props) {
     color="grey"
     size={35}
   />;
-  if (page === "orientationPrecourse") {
-    return <Orientation />  }
-  if (page === "dataModeling") {
-    return <DataModeling />  }
-  if (page === "inheritance") {
-    return <InheritancePatterns />  }
-  if (page === "home") {
-      return <Home />  }
 
+
+  if (page === "recursionReview") {
+    return <Orientation />  }
+  if (page === "junior") {
+        return <JuniorSection />  }
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.listTitle}>Junior Section</Text>
+      <Text style={styles.listTitle}>Orientation and Precourse</Text>
       <TouchableOpacity
         onPress={() => {
-            setPage("home"),
+            setPage("junior"),
             console.log(page)}}>
         <Text>BACK </Text>
       </TouchableOpacity>
       <FlatList
-        data ={junior}
+        data ={inheritance}
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            setPage(item.id)
-            setPrevious("home")
-            console.log(previous)
-          }}>
+            setPage(item.id),
+            console.log(page)}}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>
