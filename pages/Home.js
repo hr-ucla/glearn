@@ -10,7 +10,7 @@ import Orientation from './Orientation.js'
 import DataModeling from './DataModeling.js';
 import InheritancePatterns from './Inheritance.js';
 
-import Search1 from '../SearchBar/Search1.js'
+import Search from '../SearchBar/Search.js'
 
 export default function Home() {
   const [ page, setPage ] = useState('home');
@@ -74,7 +74,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Search1 setPage={setPage} page={page}/>
+      <Search setPage={setPage} page={page}/>
       <Text style={styles.listTitle}>  SEI - Los Angeles - August 2020 - HRLA39</Text>
       <FlatList
         data ={home}

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-firebase/app": "^8.4.7",
+    "axios": "^0.21.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "expo": "~39.0.2",

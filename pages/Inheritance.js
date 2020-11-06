@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Search1 from '../SearchBar/Search1.js'
+import Search from '../SearchBar/Search.js'
 
 export default function InheritancePatterns(props) {
 
@@ -59,7 +59,7 @@ export default function InheritancePatterns(props) {
 
   return (
     <View style={styles.container}>
-      <Search1 setPage={props.setPage} page={props.page}/>
+      <Search setPage={props.setPage} page={props.page}/>
       <Text style={styles.listTitle}>Orientation and Precourse</Text>
       <FlatList
         data ={inheritance}
