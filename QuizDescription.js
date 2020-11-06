@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Button, Image, SafeAreaView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Fontisto';
 
-export default function QuizDescription() {
+export default function QuizDescription(props) {
   const questions =
     <Icon
       name="question"
@@ -21,6 +21,12 @@ export default function QuizDescription() {
       color="#f79020"
       size={40}
     />;
+
+  const details = props.description.map({
+    return (
+
+    );
+  })
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#000'}}>
@@ -44,7 +50,7 @@ export default function QuizDescription() {
         <TouchableOpacity
           style={styles.start}
         >
-          <Text style={styles.startText}>Retake Assessment</Text>
+          <Text style={styles.startText}>Start Assessment</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

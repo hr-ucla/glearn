@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { SafeAreaView, SectionList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Search from './SearchBar/Search.js'
+import Search from './SearchBar/Search.js';
 
 const check =
   <Icon
@@ -10,46 +10,34 @@ const check =
     size={40}
   />;
 
-// const data = deliverablesData.map((week, index) => {
-//   return {title: week.title, data: week.data}
-// });
-
 export default function Deliverables(props) {
   return (
     <SafeAreaView style={styles.container}>
       <Search setPage={props.setPage} page={props.page}/>
       <SectionList
-          sections={[
-            {title: 'Week 1', data: ['Value vs Reference', 'Scope & Closures', 'Keyword "this"', 'Classes', 'Prototypes', 'Keyword "new"']},
-            {title: 'Week 2', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Week 3', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Week 4', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Week 5', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Week 6', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Solo Week', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Week 7', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Week 8', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Week 9', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Week 10', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-            {title: 'Week 11', data: ['<Add Quiz Here>', '<Add Quiz Here>','<Add Quiz Here>']},
-            {title: 'Week 12', data: ['<Add Quiz Here>', '<Add Quiz Here>', '<Add Quiz Here>']},
-          ]}
+          sections={props.deliverables}
           renderItem={({item}) =>
             <TouchableOpacity
-              onPress={item.id}
+              onPress={() => {
+                props.setPage(item.id)
+              }}
               style={styles.item}
             >
               <View style={styles.leftSide}>
-                <Text style={styles.deliverables}>{item}</Text>
-                <Text style={styles.description}>Due Date: 11/3/2020</Text>
+                <Text style={styles.deliverables}>{item.title}</Text>
+                <Text style={styles.description}>Due Date: {item.dueDate}</Text>
               </View>
-              <View style={styles.rightSide}>
-                <View style={styles.top}>
-                  <Text style={styles.percentage}>90%</Text>
-                  {check}
+              {item.completed ?
+                <View style={styles.rightSide}>
+                  <View style={styles.top}>
+                    <Text style={styles.percentage}>{item.percentage}%</Text>
+                    {check}
+                  </View>
+                  <Text style={styles.description}>{item.numOfCorrect}/{item.numOfQuestions}</Text>
                 </View>
-                <Text style={styles.description}>9/10</Text>
-              </View>
+                  :
+                <View style={styles.rightSide}></View>
+              }
             </TouchableOpacity>
           }
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
