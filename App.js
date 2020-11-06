@@ -10,7 +10,6 @@ import QuizContent from './QuizContent.js';
 import Module from './Module.js';
 // import sampleModule from './moduleData.js';
 import Home from './pages/Home.js';
-import deliverablesData from './deliverablesData.js';
 import LoginScreen from './screens/LoginScreen.js';
 import LoadingScreen from './screens/LoadingScreen.js';
 

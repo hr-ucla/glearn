@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import firebase from 'firebase';
 import * as Google from 'expo-google-app-auth';
 import * as GoogleSignIn from 'expo-google-sign-in';
+import Expo from 'expo';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -23,6 +24,7 @@ export default function LoginScreen() {
   );
   const githubButton = (
     <Icon.Button
+      onPress={() => signInWithGithubAsync()}
       name="github"
       backgroundColor="#f79020"
       color="#fff"
@@ -118,6 +120,24 @@ export default function LoginScreen() {
     }
   }
 
+  const signInWithGithubAsync = async() => {
+    try {
+      const result = await Google.logInAsync({
+        iosClientId: '309263535474-64241a59m9gq05k6f6dgon4b7pqhmrds.apps.googleusercontent.com',
+        scopes: ['profile', 'email'],
+      });
+
+      if (result.type === 'success') {
+        onSignIn(result);
+        return result.accessToken;
+      } else {
+        return { cancelled: true };
+      }
+    } catch (e) {
+      return { error: true };
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../logo.png')} />
@@ -146,7 +166,7 @@ export default function LoginScreen() {
       <TouchableOpacity
         style={styles.signIn}
       >
-        <Text style={styles.signInText}>Sign In</Text>
+        <Text style={styles.signInText}>Sign In {Expo.AuthSession.getRedirectUrl()}</Text>
       </TouchableOpacity>
       <Button
           title="Forgot your password?"
