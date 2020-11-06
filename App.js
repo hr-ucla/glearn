@@ -23,12 +23,8 @@ const AppNavigator = createAppContainer(AppSwitchNavigator);
 
 export default function App() {
   return (
-<<<<<<< HEAD
     <>
     </>
-=======
-    <AppNavigator />
->>>>>>> 805b541f8a64ba1bd25bacb4749cdbb52e85bdc0
   );
 }
 

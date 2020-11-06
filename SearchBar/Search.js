@@ -230,7 +230,7 @@ class Search extends React.Component {
               <View style={styles.header_inner}>
                 <TouchableOpacity
                   onPress={() => {
-                  this.props.setPage("junior")
+                  this.props.setPage("Junior Section")
                   }}>
                   <Text>{backButton} </Text>
               </TouchableOpacity>

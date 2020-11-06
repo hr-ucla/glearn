@@ -82,8 +82,8 @@ export default function JuniorSection(props) {
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            if (item.id === "orientationPrecourse" || item.id === "dataModeling"|| item.id === "inheritance" ){
-            props.setPage(item.id)
+            if (item.name === "Orientation and Precourse" || item.name === "Data Modeling and Classes"|| item.name === "Inheritance Patterns" ){
+            props.setPage(item.name)
             }
           }}>
           <View style={styles.leftSide}>

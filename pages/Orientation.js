@@ -69,7 +69,7 @@ export default function Orientation(props) {
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            props.setPage(item.id),
+            props.setPage(item.name),
             console.log(props.page)}}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
