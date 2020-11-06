@@ -57,14 +57,14 @@ export default function Module(props) {
 
   const [module, setModule] = useState('');
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3000/api/search/keywords/hack`)
-  //     .then(results => {
-  //       console.log(results.data);
-  //       setModule(results.data[0])
-  //     })
-  //     .catch((err) => console.error(err));
-  // }, []);
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/search/keywords/hack`)
+      .then(results => {
+        console.log(results.data);
+        setModule(results.data[0])
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>

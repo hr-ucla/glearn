@@ -20,7 +20,7 @@ export default function Home() {
     color="#19a5b3"
     size={40}
   />;
-  const folder = 
+  const folder =
   <Icon
     name="folder"
     color="grey"
@@ -96,7 +96,7 @@ export default function Home() {
       <StatusBar style="auto" />
     </View>
     )
-  
+
 }
 const styles = StyleSheet.create({
   container: {
