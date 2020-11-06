@@ -31,10 +31,6 @@ const DATA = [
   },
 ];
 
-const moreData = {
-  hello: `var eat = function(meal){\n  console.log('meal before bite:', meal);\n  console.log('now eating', meal.pop());\n  if(meal.length){\n    eat(meal);\n  } else {\n    console.log('done with the meal!');\n  }\n}`
-}
-
 const Question = ({ item, onPress, style }) => (
   <View style={styles.container}>
     <View style={styles.flexboxRow}>
@@ -43,7 +39,7 @@ const Question = ({ item, onPress, style }) => (
       </View>
       <Text style={styles.question}>What message will eventually be alerted? After how long?</Text>
     </View>
-    <Text style={styles.code}>{moreData.hello}</Text>
+    <Text style={styles.code}>code is supposed to go here</Text>
     <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
       <Text style={styles.text}>{item.title}</Text>
     </TouchableOpacity>

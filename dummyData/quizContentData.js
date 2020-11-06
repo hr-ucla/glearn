@@ -1,20 +1,25 @@
 const quizContentData = [
   {
     id: 1,
-    numOfQuestions: 6,
-    question: 'What message will eventually be alerted? After how long?'
-    code: 'var name = "Window";\n var alice = {\n name: "Alice",\nsayHi: function() {\n alert(this.name + " says hi");\n }\n };\n var bob = { name: "Bob" };\n setTimeout(function() {\n alice.sayHi();\n }, 1000);',
-    choices: [1, 2, 3, 4, 5],
-    answer: 1,
-    numb: 0
+    title: 'Value vs Reference Checkpoint',
+    numOfQuestions: 10,
+    question: 'After the following code runs, what will be the value of x?',
+    code: "var x = 2;\nvar y = x;\ny = 3;",
+    multipleChoice: [
+      {
+        id: 1,
+        choice: '2',
+      },
+      {
+        id: 2,
+        choice: '3',
+      },
+      {
+        id: 3,
+        choice: 'Not sure',
+      },
+    ],
+    answerId: 1,
   },
-  {
-    id: 1,
-    numOfQuestions: 6,
-    question: 'What message will eventually be alerted? After how long?'
-    code: 'var name = "Window";\n var alice = {\n name: "Alice",\nsayHi: function() {\n alert(this.name + " says hi");\n }\n };\n var bob = { name: "Bob" };\n setTimeout(function() {\n alice.sayHi();\n }, 1000);',
-    choices: [1, 2, 3, 4, 5],
-    answer: 1,
-    score: 0,
-  }
+
 ]
