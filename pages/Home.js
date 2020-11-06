@@ -9,6 +9,7 @@ import Deliverables from '../Deliverables.js';
 import Orientation from './Orientation.js'
 import DataModeling from './DataModeling.js';
 import InheritancePatterns from './Inheritance.js';
+import Module from '../Module.js'
 
 import Search from '../SearchBar/Search.js'
 
@@ -65,8 +66,8 @@ export default function Home() {
     return <DataModeling page={page} setPage={setPage}/>  }
   if (page === "inheritance") {
     return <InheritancePatterns page={page} setPage={setPage}/>  }
-  if (page === "recursionReview") {
-    return <RecursionReview />  }
+  if (page === "Exercise: Recursion Review") {
+    return <Module />  }
   if (page === "underbar") {
     return <Underbar />  }
   if (page === "welcome") {
