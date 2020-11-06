@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Image, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity } from 'react-native';
+import HTMLView from 'react-native-htmlview';
+import axios from 'axios';
 
 export default function Module(props) {
   const styles = StyleSheet.create({
@@ -13,40 +15,62 @@ export default function Module(props) {
     moduleName: {
       color: 'rgb(68, 68, 68)',
       marginTop: 60,
+      marginBottom: 30,
       fontSize: 30
     },
-    moduleText: {
+    text: {
       color: 'rgb(68, 68, 68)',
       fontSize: 17,
       lineHeight: 30,
-      marginTop: 30,
+      marginTop: 10,
     },
-    moduleCode: {
+    code: {
+      backgroundColor: 'rgb(248, 248, 248)',
+      fontSize: 16,
+      fontFamily: 'Menlo',
+    },
+    codesnippet: {
       color: 'rgb(56, 58, 66)',
       backgroundColor: 'rgb(230, 230, 240)',
       fontSize: 12,
       lineHeight: 15,
       marginTop: 30,
+      marginBottom: 20,
       padding: 16,
       fontFamily: `Menlo`,
     },
+    title1: {
+      color: 'rgb(68, 68, 68)',
+      fontSize: 23,
+      fontWeight: 'bold',
+      lineHeight: 30,
+      marginTop: 30,
+    },
+    title2: {
+      color: 'rgb(68, 68, 68)',
+      fontSize: 20,
+      fontWeight: 'bold',
+      lineHeight: 30,
+      marginTop: 30,
+    },
   });
 
-  const { moduleName, contents } = props.module;
-  const listContents = contents.map((content) => {
-    if (content.text) {
-      return <Text key={content.id} style={styles.moduleText}>{content.text}</Text>
-    } else if (content.code) {
-      return <Text key={content.id} style={styles.moduleCode}>{content.code}</Text>
-    }
-  });
+  const [module, setModule] = useState('');
 
+  // useEffect(() => {
+  //   axios.get(`http://localhost:3000/api/search/keywords/hack`)
+  //     .then(results => {
+  //       console.log(results.data);
+  //       setModule(results.data[0])
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView style={styles.moduleContainer}>
-        <Text style={styles.moduleName}>{props.module.moduleName}</Text>
-        {listContents}
+        <Text style={styles.moduleName}>{module.moduleName}</Text>
+        <HTMLView value={module.content} stylesheet={styles}/>
       </ScrollView>
     </SafeAreaView>
   );

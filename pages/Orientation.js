@@ -4,61 +4,48 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Search from '../SearchBar/Search.js'
 
-
-export default function JuniorSection(props) {
-  const junior = [
+export default function Orientation(props) {
+  const orientation = [
     {
-      id:"orientationPrecourse",
-      name: "Orientation and Precourse",
+      id:"recursionReview",
+      name: "Exercise: Recursion Review",
     },
     {
-      id:"dataModeling",
-      name: "Data Modeling and Classes",
+      id:"underbar",
+      name: "Exercise: Underbar Review",
     },
     {
-      id:"inheritance",
-      name: "Inheritance Patterns",
+      id:"welcome",
+      name: "Welcome to Hack Reactor",
     },
     {
-      id:"algorithms",
-      name: "Algorithms",
+      id:"lifeAtHackReactor",
+      name: "Life at Hack Reactor",
     },
     {
-      id:"browserApps",
-      name: "Browser Apps, jQuery, and AJAX",
+      id:"gitWorkflow",
+      name: "Git Workflow Pairs",
     },
     {
-      id:"react",
-      name: "React",
+      id:"effectivePairing",
+      name: "Effective Pairing and Feedback",
     },
     {
-      id:"redux",
-      name: "Redux",
+      id:"debugging",
+      name: "Debugging Tools",
     },
     {
-      id:"node",
-      name: "Servers and Node",
+      id:"succeed",
+      name: "How to Succeed",
     },
     {
-      id:"restCrud",
-      name: "REST and CRUD",
+      id:"javascriptReview1",
+      name: "JavaScript Revew Part 1",
     },
     {
-      id:"databases",
-      name: "Databases",
+      id:"javascriptReview2",
+      name: "JavaScript Review Part 2",
     },
-    {
-      id:"authentication",
-      name: "Authentication",
-    },
-    {
-      id:"miniApps",
-      name: "Mini Apps",
-    },
-    {
-      id:"fullstack",
-      name: "Full Stack Review",
-    }
   ]
   const check =
   <Icon
@@ -76,16 +63,14 @@ export default function JuniorSection(props) {
   return (
     <View style={styles.container}>
       <Search setPage={props.setPage} page={props.page}/>
-      <Text style={styles.listTitle}>Junior Section</Text>
+      <Text style={styles.listTitle}>Orientation and Precourse</Text>
       <FlatList
-        data ={junior}
+        data ={orientation}
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            if (item.id === "orientationPrecourse" || item.id === "dataModeling"|| item.id === "inheritance" ){
-            props.setPage(item.id)
-            }
-          }}>
+            props.setPage(item.id),
+            console.log(props.page)}}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>

@@ -2,10 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Search from '../SearchBar/Search.js'
 
-export default function SeniorSection() {
-  const [ page, setPage ] = useState('');
-
+export default function SeniorSection(props) {
   const senior = [
     {
       id:"fec",
@@ -28,16 +27,15 @@ export default function SeniorSection() {
     color="grey"
     size={35}
   />;
+  
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
+      <Search setPage={props.setPage} page={props.page}/>
       <Text style={styles.listTitle}>Student Wiki </Text>
       <FlatList
         data ={senior}
         renderItem={({item}) => (
-        <TouchableOpacity
-          onPress={() => {
-            setPage(item.id),
-            console.log(page)}}>
+        <TouchableOpacity>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>
@@ -49,7 +47,7 @@ export default function SeniorSection() {
         keyExtractor={item => item.id}
       />
       <StatusBar style="auto" />
-    </SafeAreaView>
+    </View>
   )
 }
 
