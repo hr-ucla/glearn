@@ -13,6 +13,17 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cors());
 
+// Route to get one module
+app.get('/api/module/:name', (req, res) => {
+  dbHelpers.getModule(req.params.name, (err, results) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
 // Route to search for keywords
 app.get('/api/search/keywords/:term', (req, res) => {
   dbHelpers.searchModule(req.params.term, (err, results) => {

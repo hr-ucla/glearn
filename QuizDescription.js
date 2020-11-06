@@ -22,11 +22,11 @@ export default function QuizDescription(props) {
       size={40}
     />;
 
-  const details = props.description.map({
-    return (
+  // const details = props.description.map({
+  //   return (
 
-    );
-  })
+  //   );
+  // })
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#000'}}>

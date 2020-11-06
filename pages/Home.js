@@ -59,11 +59,11 @@ export default function Home() {
   if (page === "Inheritance Patterns") {
     return <InheritancePatterns page={page} setPage={setPage}/>  }
   if (page === "Exercise: Recursion Review") {
-    return <Module />  }
+    return <Module page={page} setPage={setPage} moduleName={page}/>  }
   if (page === "Exercise: Underbar Review") {
-    return <Underbar />  }
+    return <Module page={page} setPage={setPage} moduleName={page}/>  }
   if (page === "Welcome to Hack Reactor") {
-    return <WelcomeToHackReactor />  }
+    return <Module page={page} setPage={setPage} moduleName={page}/>  }
 
   return (
     <View style={styles.container}>
