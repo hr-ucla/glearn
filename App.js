@@ -8,7 +8,7 @@ import deliverablesData from './dummyData/deliverablesData.js';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import firebase from 'firebase';
 // import { firebaseConfig } from './config/firebase.js';
-import HomeScreen from './pages/Home.js';
+import Home from './pages/Home.js';
 import LoginScreen from './screens/LoginScreen.js';
 import LoadingScreen from './screens/LoadingScreen.js';
 
@@ -30,7 +30,7 @@ import LoadingScreen from './screens/LoadingScreen.js';
 export default function App() {
   return (
     <>
-      <HomeScreen />
+      <Home />
     </>
   );
 }

@@ -35,7 +35,6 @@ class Search extends React.Component {
     this._back_button_opacity = new Value(0)
     this._content_translate_y = new Value(height)
     this._content_opacity = new Value(0)
-    // this.handleSearch = this.handleSearch.bind(this);
     this.getSearches= this.getSearches.bind(this);
   }
   getSearches(term) {
@@ -131,7 +130,7 @@ class Search extends React.Component {
   
   render(){
 
-    if (this.props.page === 'studentWiki' || this.props.page === 'junior' || this.props.page === 'senior' || this.props.page === 'quizzes') {
+    if (this.props.page === 'Student Wiki' || this.props.page === 'Junior Section' || this.props.page === 'Senior Section' || this.props.page === 'Quizzes') {
       return (
         <>
           <SafeAreaView style={styles.header_safe_area}>
@@ -207,13 +206,20 @@ class Search extends React.Component {
                   </View>
                   :
                     <ScrollView>
-                      <View style={styles.search_item}>
-                        <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                      <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                      <FlatList
+                        style={styles.search_item}
+                        data ={this.state.searchData}
+                        renderItem={({item}) => (
                         <TouchableOpacity
-                          onPress={() => {}}>
-                         <Text>{this.state.searchData[0].moduleName} </Text>
-                      </TouchableOpacity>
-                      </View>
+                          onPress={() => {props.setPage(item.name)}}>
+                          <View style={styles.leftSide}>
+                            <Text style={styles.listItem}>{item.name}</Text>
+                          </View>
+                        </TouchableOpacity>
+                        )}
+                        keyExtractor={item => item.id}
+                      />
                     </ScrollView>
                 }
               </View>
@@ -222,7 +228,7 @@ class Search extends React.Component {
         </>
       )
     }
-    if (this.props.page === 'orientationPrecourse' || this.props.page === 'dataModeling' || this.props.page === 'inheritance') {
+    if (this.props.page === 'Orientation and Precourse' || this.props.page === 'Data Modeling and Classes' || this.props.page === 'Inheritance Patterns') {
       return (
         <>
           <SafeAreaView style={styles.header_safe_area}>
@@ -297,15 +303,120 @@ class Search extends React.Component {
                     </Text>
                   </View>
                   :
-                    <ScrollView>
-                      <View style={styles.search_item}>
-                        <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
-                        <TouchableOpacity
-                          onPress={() => {}}>
-                         <Text>{this.state.searchData[0].moduleName} </Text>
-                        </TouchableOpacity>
-                      </View>
-                    </ScrollView>
+                  <ScrollView>
+                    <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                    <FlatList
+                      style={styles.search_item}
+                      data ={this.state.searchData}
+                      renderItem={({item}) => (
+                      <TouchableOpacity
+                        onPress={() => {props.setPage(item.name)}}>
+                        <View style={styles.leftSide}>
+                          <Text style={styles.listItem}>{item.name}</Text>
+                        </View>
+                      </TouchableOpacity>
+                      )}
+                      keyExtractor={item => item.id}
+                    />
+                  </ScrollView>
+                }
+              </View>
+            </SafeAreaView>
+          </Animated.View>
+        </>
+      )
+    }
+    if (this.props.page === 'Exercise: Recursion Review' || this.props.page === 'Exercise: Underbar Review' || this.props.page === 'Welcome to Hack Reactor') {
+      return (
+        <>
+          <SafeAreaView style={styles.header_safe_area}>
+            <View style={styles.header}>
+              <View style={styles.header_inner}>
+                <TouchableOpacity
+                  onPress={() => {
+                  this.props.setPage("Orientation and Precourse")
+                  }}>
+                  <Text>{backButton} </Text>
+              </TouchableOpacity>
+                <View>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.props.setPage("home"),
+                      console.log(this.props.page)}}>
+                    <Image 
+                      source={require('../logo.png')}
+                      style={{width: 152, height: 30, marginLeft:"20%"}}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <TouchableHighlight
+                  activeOpacity={1}
+                  underlayColor={"#ccd0d5"}
+                  onPress={this._onFocus}
+                  style={styles.search_icon_box}
+                >
+                  <Icon name="search" size={22} color="#000000" />
+                </TouchableHighlight>
+                <Animated.View
+                  style={[ styles.input_box, {transform: [{translateX: this._input_box_translate_x}] } ]}
+                >
+                  <Animated.View style={{opacity: this._back_button_opacity}}>
+                    <TouchableHighlight
+                      activeOpacity={1}
+                      underlayColor={"#ccd0d5"}
+                      onPress={this._onBlur}
+                      style={styles.back_icon_box}
+                    >
+                      <Icon name="chevron-left" size={22} color="#000000" />
+                    </TouchableHighlight>
+                  </Animated.View>
+                  <TextInput 
+                    ref="input"
+                    placeholder="Search g-Learn"
+                    clearButtonMode="always"
+                    value={this.state.keyword}
+                    onChangeText={(value) => this.setState({keyword: value}), this.getSearches(this.state.keyword), console.log(this.state.searchData)}
+                    style={styles.input}
+                  />
+                </Animated.View>
+              </View>
+            </View>
+          </SafeAreaView>
+  
+          <Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
+            <SafeAreaView style={styles.content_safe_area}>
+              <View style={styles.content_inner}>
+                <View style={styles.separator} />
+                {
+                  this.state.keyword === ''
+                  ?
+                  <View style={styles.image_placeholder_container}>
+                    <Image 
+                      source={require('../search.jpg')} 
+                      style={styles.image_placeholder}
+                    />
+                    <Text style={styles.image_placeholder_text}>
+                      Enter a key word{"\n"}
+                      to search on g-Learn
+                    </Text>
+                  </View>
+                  :
+                  <ScrollView>
+                    <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                    <FlatList
+                      style={styles.search_item}
+                      data ={this.state.searchData}
+                      renderItem={({item}) => (
+                      <TouchableOpacity
+                        onPress={() => {props.setPage(item.name)}}>
+                        <View style={styles.leftSide}>
+                          <Text style={styles.listItem}>{item.name}</Text>
+                        </View>
+                      </TouchableOpacity>
+                      )}
+                      keyExtractor={item => item.id}
+                    />
+                  </ScrollView>
                 }
               </View>
             </SafeAreaView>
@@ -382,13 +493,20 @@ class Search extends React.Component {
                   </View>
                 :
                   <ScrollView>
-                    <View style={styles.search_item}>
-                      <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                    <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                    <FlatList
+                      style={styles.search_item}
+                      data ={this.state.searchData}
+                      renderItem={({item}) => (
                       <TouchableOpacity
-                          onPress={() => {}}>
-                         <Text>{this.state.searchData[0].moduleName} </Text>
+                        onPress={() => {props.setPage(item.name)}}>
+                        <View style={styles.leftSide}>
+                          <Text style={styles.listItem}>{item.name}</Text>
+                        </View>
                       </TouchableOpacity>
-                    </View>
+                      )}
+                      keyExtractor={item => item.id}
+                    />
                   </ScrollView>
               }
             </View>
@@ -396,6 +514,7 @@ class Search extends React.Component {
         </Animated.View>
       </>
     );
+    
   }
 }
 

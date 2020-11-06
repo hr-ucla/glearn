@@ -14,7 +14,7 @@ const sampleModules = [
   {
     moduleId: 3,
     moduleName: 'Welcome to Hack Reactor',
-    keywords: ['program', 'hack', 'Rractor', 'sprint', 'test', 'framework', 'requirements'],
+    keywords: ['program', 'hack', 'reactor', 'sprint', 'test', 'framework', 'requirements'],
     content: `<title2>Learning Objectives</title2><text>By the end of this lesson you will be able to:</text><title2>Slides</title2><a href="https://docs.google.com/presentation/d/e/2PACX-1vQ3EcYmGL8vANpkLJBnd_Ox3_9YMpYdD1hzwY2ZHKWYI7fBQHrnupZQ0nCStNW_JkJG9XlAK24Gc4PK/embed?start=false&loop=false&delayms=3000&slide=id.g1445018543_0_36">Welcome to Hack Reactor</a>`,
   },
 ];
