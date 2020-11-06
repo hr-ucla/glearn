@@ -66,7 +66,7 @@ export default function InheritancePatterns(props) {
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            props.setPage(item.id)
+            // props.setPage(item.name)
           }}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>

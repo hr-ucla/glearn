@@ -9,7 +9,7 @@ import Deliverables from '../Deliverables.js';
 import Orientation from './Orientation.js'
 import DataModeling from './DataModeling.js';
 import InheritancePatterns from './Inheritance.js';
-
+import Module from '../Module.js'
 import Search from '../SearchBar/Search.js'
 
 export default function Home() {
@@ -28,48 +28,41 @@ export default function Home() {
   />;
   const home = [
     {
-      id:"studentWiki",
       name: "Student Wiki",
     },
     {
-      id:"junior",
       name: "Junior Section",
     },
     {
-      id:"senior",
       name: "Senior Section",
     },
     {
-      id:"toyProblems",
       name: "Toy Problems",
     },
     {
-      id:"quizzes",
       name: "Quizzes",
     }
   ]
 
-  if (page === "studentWiki") {
+  if (page === "Student Wiki") {
     return <StudentWiki page={page} setPage={setPage}/>  }
-  if (page === "junior") {
+  if (page === "Junior Section") {
       return <JuniorSection page={page} setPage={setPage}/>  }
-  if (page === "senior") {
+  if (page === "Senior Section") {
     return <SeniorSection page={page} setPage={setPage}/>  }
-  if (page === "quizzes") {
-    return <Deliverables  page={page} setPage={setPage}/>  }
-  if (page === "recursionReview") {
+  if (page === "Quizzes") {
+    return <Deliverables  page={page} setPage={setPage} deliverables={deliverablesData} content={quizContentData} />  }
+  if (page === "Orientation and Precourse") {
     return <Orientation page={page} setPage={setPage}/>  }
-  if (page === "orientationPrecourse") {
-    return <Orientation page={page} setPage={setPage}/>  }
-  if (page === "dataModeling") {
+  if (page === "Data Modeling and Classes") {
     return <DataModeling page={page} setPage={setPage}/>  }
-  if (page === "inheritance") {
+  if (page === "Inheritance Patterns") {
     return <InheritancePatterns page={page} setPage={setPage}/>  }
-  if (page === "recursionReview") {
-    return <RecursionReview />  }
-  if (page === "underbar") {
+  if (page === "Exercise: Recursion Review") {
+    return <Module />  }
+  if (page === "Exercise: Underbar Review") {
     return <Underbar />  }
-  if (page === "welcome") {
+  if (page === "Welcome to Hack Reactor") {
     return <WelcomeToHackReactor />  }
 
   return (
@@ -81,7 +74,7 @@ export default function Home() {
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            setPage(item.id),
+            setPage(item.name),
             console.log(page)}}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>

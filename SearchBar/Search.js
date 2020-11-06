@@ -38,12 +38,8 @@ class Search extends React.Component {
     // this.handleSearch = this.handleSearch.bind(this);
     this.getSearches= this.getSearches.bind(this);
   }
-  getSearches(keyword) {
-    axios.get('/api/module', {
-      params: {
-        search: keyword,
-      },
-    })
+  getSearches(term) {
+    axios.get(`http://localhost:3000/api/search/keywords/${term}`)
       .then((results) => {
         this.setState({
           searchData: results.data,
@@ -184,7 +180,7 @@ class Search extends React.Component {
                     placeholder="Search g-Learn"
                     clearButtonMode="always"
                     value={this.state.keyword}
-                    onChangeText={(value) => this.setState({keyword: value}), console.log(this.state) }
+                    onChangeText={(value) => this.setState({keyword: value}), this.getSearches(this.state.keyword), console.log(this.state.searchData) }
                     style={styles.input}
                   />
                 </Animated.View>
@@ -215,7 +211,7 @@ class Search extends React.Component {
                         <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
                         <TouchableOpacity
                           onPress={() => {}}>
-                         <Text>{this.state.keyword} </Text>
+                         <Text>{this.state.searchData[0].moduleName} </Text>
                       </TouchableOpacity>
                       </View>
                     </ScrollView>
@@ -234,7 +230,7 @@ class Search extends React.Component {
               <View style={styles.header_inner}>
                 <TouchableOpacity
                   onPress={() => {
-                  this.props.setPage("junior")
+                  this.props.setPage("Junior Section")
                   }}>
                   <Text>{backButton} </Text>
               </TouchableOpacity>
@@ -275,7 +271,7 @@ class Search extends React.Component {
                     placeholder="Search g-Learn"
                     clearButtonMode="always"
                     value={this.state.keyword}
-                    onChangeText={(value) => this.setState({keyword: value}) }
+                    onChangeText={(value) => this.setState({keyword: value}), this.getSearches(this.state.keyword), console.log(this.state.searchData)}
                     style={styles.input}
                   />
                 </Animated.View>
@@ -306,7 +302,7 @@ class Search extends React.Component {
                         <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
                         <TouchableOpacity
                           onPress={() => {}}>
-                         <Text>{this.state.keyword} </Text>
+                         <Text>{this.state.searchData[0].moduleName} </Text>
                         </TouchableOpacity>
                       </View>
                     </ScrollView>
@@ -359,7 +355,7 @@ class Search extends React.Component {
                   placeholder="Search g-Learn"
                   clearButtonMode="always"
                   value={this.state.keyword}
-                  onChangeText={(value) => {this.setState({keyword: value}), console.log(this.state)}}
+                  onChangeText={(value) => {this.setState({keyword: value}), this.getSearches(this.state.keyword), console.log(this.state)}}
                   style={styles.input}
                 />
               </Animated.View>
@@ -390,7 +386,7 @@ class Search extends React.Component {
                       <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
                       <TouchableOpacity
                           onPress={() => {}}>
-                         <Text>{this.state.keyword} </Text>
+                         <Text>{this.state.searchData[0].moduleName} </Text>
                       </TouchableOpacity>
                     </View>
                   </ScrollView>
