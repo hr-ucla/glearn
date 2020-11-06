@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Image, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity } from 'react-native';
 import HTMLView from 'react-native-htmlview';
+import axios from 'axios';
 
 export default function Module(props) {
   const styles = StyleSheet.create({
@@ -54,13 +55,22 @@ export default function Module(props) {
     },
   });
 
-  const { moduleName, content } = props.module;
+  const [module, setModule] = useState('');
+
+  // useEffect(() => {
+  //   axios.get(`http://localhost:3000/api/search/keywords/hack`)
+  //     .then(results => {
+  //       console.log(results.data);
+  //       setModule(results.data[0])
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
       <ScrollView style={styles.moduleContainer}>
-        <Text style={styles.moduleName}>{moduleName}</Text>
-        <HTMLView value={content} stylesheet={styles}/>
+        <Text style={styles.moduleName}>{module.moduleName}</Text>
+        <HTMLView value={module.content} stylesheet={styles}/>
       </ScrollView>
     </SafeAreaView>
   );
