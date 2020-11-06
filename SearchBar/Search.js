@@ -35,7 +35,6 @@ class Search extends React.Component {
     this._back_button_opacity = new Value(0)
     this._content_translate_y = new Value(height)
     this._content_opacity = new Value(0)
-    // this.handleSearch = this.handleSearch.bind(this);
     this.getSearches= this.getSearches.bind(this);
   }
   getSearches(term) {
@@ -207,13 +206,20 @@ class Search extends React.Component {
                   </View>
                   :
                     <ScrollView>
-                      <View style={styles.search_item}>
-                        <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                      <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                      <FlatList
+                        style={styles.search_item}
+                        data ={this.state.searchData}
+                        renderItem={({item}) => (
                         <TouchableOpacity
-                          onPress={() => {}}>
-                         <Text>{this.state.searchData[0].moduleName} </Text>
-                      </TouchableOpacity>
-                      </View>
+                          onPress={() => {props.setPage(item.name)}}>
+                          <View style={styles.leftSide}>
+                            <Text style={styles.listItem}>{item.name}</Text>
+                          </View>
+                        </TouchableOpacity>
+                        )}
+                        keyExtractor={item => item.id}
+                      />
                     </ScrollView>
                 }
               </View>
@@ -297,15 +303,22 @@ class Search extends React.Component {
                     </Text>
                   </View>
                   :
-                    <ScrollView>
-                      <View style={styles.search_item}>
-                        <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
-                        <TouchableOpacity
-                          onPress={() => {}}>
-                         <Text>{this.state.searchData[0].moduleName} </Text>
-                        </TouchableOpacity>
-                      </View>
-                    </ScrollView>
+                  <ScrollView>
+                    <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                    <FlatList
+                      style={styles.search_item}
+                      data ={this.state.searchData}
+                      renderItem={({item}) => (
+                      <TouchableOpacity
+                        onPress={() => {props.setPage(item.name)}}>
+                        <View style={styles.leftSide}>
+                          <Text style={styles.listItem}>{item.name}</Text>
+                        </View>
+                      </TouchableOpacity>
+                      )}
+                      keyExtractor={item => item.id}
+                    />
+                  </ScrollView>
                 }
               </View>
             </SafeAreaView>
@@ -382,13 +395,20 @@ class Search extends React.Component {
                   </View>
                 :
                   <ScrollView>
-                    <View style={styles.search_item}>
-                      <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                    <Icon style={styles.item_icon} name="search" size={16} color="#cccccc" />
+                    <FlatList
+                      style={styles.search_item}
+                      data ={this.state.searchData}
+                      renderItem={({item}) => (
                       <TouchableOpacity
-                          onPress={() => {}}>
-                         <Text>{this.state.searchData[0].moduleName} </Text>
+                        onPress={() => {props.setPage(item.name)}}>
+                        <View style={styles.leftSide}>
+                          <Text style={styles.listItem}>{item.name}</Text>
+                        </View>
                       </TouchableOpacity>
-                    </View>
+                      )}
+                      keyExtractor={item => item.id}
+                    />
                   </ScrollView>
               }
             </View>
