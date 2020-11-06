@@ -70,7 +70,7 @@ const Question = ({ item, onPress, style }) => (
   </View>
 );
 
-export default function QuizDescription() {
+export default function QuizContent() {
   const [selectedId, setSelectedId] = useState(null);
 
   const renderItem = ({ item }) => {

@@ -166,7 +166,7 @@ export default function LoginScreen() {
       <TouchableOpacity
         style={styles.signIn}
       >
-        <Text style={styles.signInText}>Sign In {Expo.AuthSession.getRedirectUrl()}</Text>
+        <Text style={styles.signInText}>Sign In</Text>
       </TouchableOpacity>
       <Button
           title="Forgot your password?"

@@ -9,8 +9,12 @@ import Deliverables from '../Deliverables.js';
 import Orientation from './Orientation.js'
 import DataModeling from './DataModeling.js';
 import InheritancePatterns from './Inheritance.js';
+import Search from '../SearchBar/Search.js';
 
-import Search from '../SearchBar/Search.js'
+import deliverablesData from '../dummyData/deliverablesData.js';
+import quizContentData from '../dummyData/quizContentData.js';
+
+
 
 export default function Home() {
   const [ page, setPage ] = useState('home');
@@ -20,7 +24,7 @@ export default function Home() {
     color="#19a5b3"
     size={40}
   />;
-  const folder = 
+  const folder =
   <Icon
     name="folder"
     color="grey"
@@ -56,7 +60,7 @@ export default function Home() {
   if (page === "senior") {
     return <SeniorSection page={page} setPage={setPage}/>  }
   if (page === "quizzes") {
-    return <Deliverables  page={page} setPage={setPage}/>  }
+    return <Deliverables  page={page} setPage={setPage} deliverables={deliverablesData} content={quizContentData} />  }
   if (page === "recursionReview") {
     return <Orientation page={page} setPage={setPage}/>  }
   if (page === "orientationPrecourse") {
@@ -96,7 +100,7 @@ export default function Home() {
       <StatusBar style="auto" />
     </View>
     )
-  
+
 }
 const styles = StyleSheet.create({
   container: {
