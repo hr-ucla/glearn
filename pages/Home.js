@@ -10,7 +10,7 @@ import Orientation from './Orientation.js'
 import DataModeling from './DataModeling.js';
 import InheritancePatterns from './Inheritance.js';
 import Module from '../Module.js'
-
+import Search from '../SearchBar/Search.js'
 
 export default function Home() {
   const [ page, setPage ] = useState('home');
