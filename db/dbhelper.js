@@ -3,7 +3,6 @@ const db = require('./index.js');
 
 module.exports = {
   getModule: (moduleName, callback) => {
-    console.log('moduleName:', moduleName);
     db.Module.findOne({
       'moduleName': moduleName
     }).exec((err, results) => {

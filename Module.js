@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Image, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity } from 'react-native';
+import { Button, Image, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ViewPropTypes } from 'react-native-web';
 import HTMLView from 'react-native-htmlview';
+import { WebView } from 'react-native-webview';
+import { Video } from 'react-native-video';
 import axios from 'axios';
 import Search from './SearchBar/Search.js';
 
@@ -54,6 +57,25 @@ export default function Module(props) {
       lineHeight: 30,
       marginTop: 30,
     },
+    li: {
+      color: 'rgb(68, 68, 68)',
+      fontSize: 17,
+      borderColor: 'gray',
+    },
+    ul: {
+      marginLeft: 15,
+      marginTop: 10,
+      lineHeight: 22,
+    },
+    iframe: {
+      marginTop: 20,
+      width: '100%',
+      height: '40%',
+      backgroundColor: 'black',
+    },
+    WebView: {
+      height: 250
+    }
   });
 
   const [module, setModule] = useState('');
@@ -61,17 +83,18 @@ export default function Module(props) {
   useEffect(() => {
     axios.get(`http://localhost:3000/api/module/${props.moduleName}`)
       .then(results => {
-        setModule(results.data)
+        setModule(results.data);
       })
       .catch((err) => console.error(err));
   }, []);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-      <Search setPage={props.setPage} page={props.page}/>
+      <Search setPage={props.setPage} page={props.page} />
       <ScrollView style={styles.moduleContainer}>
         <Text style={styles.moduleName}>{module.moduleName}</Text>
-        <HTMLView value={module.content} stylesheet={styles}/>
+        <HTMLView value={module.content} stylesheet={styles} />
+        <WebView allowsFullscreenVideo allowsInlineMediaPlayback mediaPlaybackRequiresUserAction source={{ uri: 'https://www.youtube.com/embed/SzckT9-rnrM' }} style={styles.WebView}/>
       </ScrollView>
     </SafeAreaView>
   );
