@@ -452,6 +452,112 @@ class Search extends React.Component {
         </>
       )
     }
+    if (this.props.page === 1) {
+      return (
+        <>
+          <SafeAreaView style={styles.header_safe_area}>
+            <View style={styles.header}>
+              <View style={styles.header_inner}>
+                <TouchableOpacity
+                  onPress={() => {
+                  this.props.setPage('Quizzes')
+                  }}>
+                  <Text>{backButton} </Text>
+              </TouchableOpacity>
+                <View>
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.props.setPage("home"),
+                      console.log(this.props.page)}}>
+                    <Image 
+                      source={require('../logo.png')}
+                      style={{width: 152, height: 30, marginLeft:"20%"}}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <TouchableHighlight
+                  activeOpacity={1}
+                  underlayColor={"#ccd0d5"}
+                  onPress={this._onFocus}
+                  style={styles.search_icon_box}
+                >
+                  <Icon name="search" size={22} color="#000000" />
+                </TouchableHighlight>
+                <Animated.View
+                  style={[ styles.input_box, {transform: [{translateX: this._input_box_translate_x}] } ]}
+                >
+                  <Animated.View style={{opacity: this._back_button_opacity}}>
+                    <TouchableHighlight
+                      activeOpacity={1}
+                      underlayColor={"#ccd0d5"}
+                      onPress={this._onBlur}
+                      style={styles.back_icon_box}
+                    >
+                      <Icon name="chevron-left" size={22} color="#000000" />
+                    </TouchableHighlight>
+                  </Animated.View>
+                  <TextInput 
+                    ref="input"
+                    placeholder="Search g-Learn"
+                    clearButtonMode="always"
+                    value={this.state.keyword}
+                    onChangeText={(value) => {this.setState({keyword: value}, 
+                      () => {
+                      this.setState({searching: !this.state.searching});
+                      this.getSearches(value);
+                    })}}
+                    style={styles.input}
+                  />
+                </Animated.View>
+              </View>
+            </View>
+          </SafeAreaView>
+  
+          <Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
+            <SafeAreaView style={styles.content_safe_area}>
+              <View style={styles.content_inner}>
+                <View style={styles.separator} />
+                {
+                  this.state.keyword === ''
+                  ?
+                  <View style={styles.image_placeholder_container}>
+                    <Image 
+                      source={require('../search.jpg')} 
+                      style={styles.image_placeholder}
+                    />
+                    <Text style={styles.image_placeholder_text}>
+                      Enter a key word{"\n"}
+                      to search on g-Learn
+                    </Text>
+                  </View>
+                  :
+                  <View style={styles.search_item}>
+                  {/* <Text>{this.state.keyword}</Text> */}
+                  <Text style={styles.item_icon}>{searchButton} </Text>
+                  <FlatList
+                    contentContainerStyle={styles.search_item}
+                    data ={this.state.searchData}
+                    renderItem={({item}) => (
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.props.setPage(item.moduleName)
+                        this.setState({searching: !this.state.searching})
+                        }}>
+                      <View>
+                        <Text>{item.moduleName}</Text>
+                      </View>
+                    </TouchableOpacity>
+                    )}
+                    keyExtractor={item => item.id}
+                  />
+                </View>
+                }
+              </View>
+            </SafeAreaView>
+          </Animated.View>
+        </>
+      )
+    }
     return (
       <>
         <SafeAreaView style={styles.header_safe_area}>
