@@ -30,7 +30,6 @@ import LoadingScreen from './screens/LoadingScreen.js';
 export default function App() {
   return (
     <>
-      <Home />
     </>
   );
 }
