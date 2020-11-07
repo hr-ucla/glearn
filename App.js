@@ -7,7 +7,6 @@ import LoginScreen from './screens/LoginScreen.js';
 import LoadingScreen from './screens/LoadingScreen.js';
 
 firebase.initializeApp(firebaseConfig);
-
 const AppSwitchNavigator = createSwitchNavigator(
   {
     LoadingScreen: LoadingScreen,
@@ -18,9 +17,7 @@ const AppSwitchNavigator = createSwitchNavigator(
     initialRouteName: 'LoadingScreen'
   },
 );
-
 const AppNavigator = createAppContainer(AppSwitchNavigator);
-
 export default function App() {
   return (
     <>
