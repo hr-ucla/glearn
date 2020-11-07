@@ -24,7 +24,6 @@ const AppNavigator = createAppContainer(AppSwitchNavigator);
 export default function App() {
   return (
     <>
-      <AppNavigator />
     </>
   );
 }

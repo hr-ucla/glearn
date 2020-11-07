@@ -34,18 +34,23 @@ export default function Home() {
   const home = [
     {
       name: "Student Wiki",
+      id: "Student Wiki"
     },
     {
       name: "Junior Section",
+      id: "Junior Section",
     },
     {
       name: "Senior Section",
+      id: "Senior Section",
     },
     {
       name: "Toy Problems",
+      id:"Toy Problems"
     },
     {
       name: "Quizzes",
+      id: "Quizzes",
     }
   ]
 
