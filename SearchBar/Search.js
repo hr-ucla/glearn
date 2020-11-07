@@ -24,7 +24,7 @@ class Search extends React.Component {
     // state
     this.state = {
       isFocused: false,
-      searchData: [" ", " ", " ", " ", " "],
+      searchData: ["hello"],
       searching: false,
       keyword:'',
     }
@@ -184,7 +184,11 @@ class Search extends React.Component {
                     placeholder="Search g-Learn"
                     clearButtonMode="always"
                     value={this.state.keyword}
-                    onChangeText={(value) => this.setState({keyword: value}), this.getSearches(this.state.keyword), console.log(this.state.searchData) }
+                    onChangeText={(value) => {this.setState({keyword: value}, 
+                      () => {
+                      this.setState({searching: !this.state.searching});
+                      this.getSearches(value);
+                    })}}
                     style={styles.input}
                   />
                 </Animated.View>
@@ -211,22 +215,25 @@ class Search extends React.Component {
                   </View>
                   :
                   <View style={styles.search_item}>
-                    {/* <Text>{this.state.keyword}</Text> */}
-                    <Text style={styles.item_icon}>{searchButton} </Text>
-                    <FlatList
-                      contentContainerStyle={styles.search_item}
-                      data ={this.state.searchData[0].moduleName}
-                      renderItem={({item}) => (
-                      <TouchableOpacity
-                        onPress={() => {this.props.setPage(item)}}>
-                        <View>
-                          <Text>{item}</Text>
-                        </View>
-                      </TouchableOpacity>
-                      )}
-                      keyExtractor={item => item.id}
-                    />
-                  </View>
+                  {/* <Text>{this.state.keyword}</Text> */}
+                  <Text style={styles.item_icon}>{searchButton} </Text>
+                  <FlatList
+                    contentContainerStyle={styles.search_item}
+                    data ={this.state.searchData}
+                    renderItem={({item}) => (
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.props.setPage(item.moduleName)
+                        this.setState({searching: !this.state.searching})
+                        }}>
+                      <View>
+                        <Text>{item.moduleName}</Text>
+                      </View>
+                    </TouchableOpacity>
+                    )}
+                    keyExtractor={item => item.id}
+                  />
+                </View>
                 }
               </View>
             </SafeAreaView>
@@ -283,7 +290,11 @@ class Search extends React.Component {
                     placeholder="Search g-Learn"
                     clearButtonMode="always"
                     value={this.state.keyword}
-                    onChangeText={(value) => this.setState({keyword: value}), this.getSearches(this.state.keyword), console.log(this.state.searchData)}
+                    onChangeText={(value) => {this.setState({keyword: value}, 
+                      () => {
+                      this.setState({searching: !this.state.searching});
+                      this.getSearches(value);
+                    })}}
                     style={styles.input}
                   />
                 </Animated.View>
@@ -314,12 +325,15 @@ class Search extends React.Component {
                     <Text style={styles.item_icon}>{searchButton} </Text>
                     <FlatList
                       contentContainerStyle={styles.search_item}
-                      data ={this.state.searchData[0].moduleName}
+                      data ={this.state.searchData}
                       renderItem={({item}) => (
                       <TouchableOpacity
-                        onPress={() => {this.props.setPage(item)}}>
+                        onPress={() => {
+                          this.props.setPage(item.moduleName)
+                          this.setState({searching: !this.state.searching})
+                          }}>
                         <View>
-                          <Text>{item}</Text>
+                          <Text>{item.moduleName}</Text>
                         </View>
                       </TouchableOpacity>
                       )}
@@ -381,7 +395,11 @@ class Search extends React.Component {
                     placeholder="Search g-Learn"
                     clearButtonMode="always"
                     value={this.state.keyword}
-                    onChangeText={(value) => this.setState({keyword: value}), this.getSearches(this.state.keyword), console.log(this.state.searchData)}
+                    onChangeText={(value) => {this.setState({keyword: value}, 
+                      () => {
+                      this.setState({searching: !this.state.searching});
+                      this.getSearches(value);
+                    })}}
                     style={styles.input}
                   />
                 </Animated.View>
@@ -412,12 +430,15 @@ class Search extends React.Component {
                     <Text style={styles.item_icon}>{searchButton} </Text>
                     <FlatList
                       contentContainerStyle={styles.search_item}
-                      data ={this.state.searchData[0].moduleName}
+                      data ={this.state.searchData}
                       renderItem={({item}) => (
                       <TouchableOpacity
-                        onPress={() => {this.props.setPage(item)}}>
+                        onPress={() => {
+                          this.props.setPage(item.moduleName)
+                          this.setState({searching: !this.state.searching})
+                          }}>
                         <View>
-                          <Text>{item}</Text>
+                          <Text>{item.moduleName}</Text>
                         </View>
                       </TouchableOpacity>
                       )}
@@ -474,10 +495,8 @@ class Search extends React.Component {
                   value={this.state.keyword}
                   onChangeText={(value) => {this.setState({keyword: value}, 
                     () => {
-                    this.setState({searching: true});
+                    this.setState({searching: !this.state.searching});
                     this.getSearches(value);
-                    console.log(this.state.searchData);
-                    this.setState({searching: false});
                   })}}
                   style={styles.input}
                 />
@@ -485,7 +504,7 @@ class Search extends React.Component {
             </View>
           </View>
         </SafeAreaView>
-        {/* this.getSearches(this.state.keyword); console.log(this.state) */}
+      
         <Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
           <SafeAreaView style={styles.content_safe_area}>
             <View style={styles.content_inner}>
@@ -512,7 +531,10 @@ class Search extends React.Component {
                       data ={this.state.searchData}
                       renderItem={({item}) => (
                       <TouchableOpacity
-                        onPress={() => {this.props.setPage(item)}}>
+                        onPress={() => {
+                          this.props.setPage(item.moduleName)
+                          this.setState({searching: !this.state.searching})
+                          }}>
                         <View>
                           <Text>{item.moduleName}</Text>
                         </View>
