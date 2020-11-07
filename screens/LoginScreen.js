@@ -18,8 +18,9 @@ export default function LoginScreen() {
       backgroundColor="#f79020"
       color="#fff"
       size={40}
+      style={styles.icons}
     >
-      Login with Google
+      Sign In with Google
     </Icon.Button>
   );
   const githubButton = (
@@ -29,8 +30,9 @@ export default function LoginScreen() {
       backgroundColor="#f79020"
       color="#fff"
       size={40}
+      style={styles.icons}
     >
-      Login with Github
+      Sign In with Github
     </Icon.Button>
   );
 
@@ -157,8 +159,8 @@ export default function LoginScreen() {
       <View style={styles.remember}>
         <Text style={styles.rememberText}>Remember me?</Text>
         <Switch
-          trackColor={{ false: '#fff', true: '#00ff00'}}
-          ios_backgroundColor={isEnabled ? '#00ff00' : '#fff'}
+          trackColor={{ false: '#fff', true: '#0ffa0f'}}
+          ios_backgroundColor={isEnabled ? '#0ffa0f' : '#fff'}
           onValueChange={toggleSwitch}
           value={isEnabled}
         />
@@ -231,12 +233,17 @@ const styles = StyleSheet.create({
   },
   break: {
     borderTopWidth: 2,
-    borderTopColor: '#000',
+    borderTopColor: '#f8f8f8',
     width: '80%',
     marginTop: '4%',
-    marginBottom: '4%',
+    marginBottom: '8%',
   },
   empty: {
     height: '1%',
+  },
+  icons: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    fontSize: 25,
   }
 });

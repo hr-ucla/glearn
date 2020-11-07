@@ -69,9 +69,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 75,
-    backgroundColor: "#dddddd",
+    backgroundColor: "#fff",
     borderTopWidth: 1,
-    borderTopColor: 'white',
+    borderTopColor: '#dddddd',
   },
   leftSide: {
     marginLeft: '2%',

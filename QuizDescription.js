@@ -24,39 +24,41 @@ export default function QuizDescription(props) {
     />;
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#000'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <Search setPage={props.setPage} page={props.page}/>
       <View style={styles.container}>
-        <Text style={styles.title}>Checkpoint: {props.quizDesc.title}</Text>
-        <View>
-          <View style={styles.logistics}>
-            {questions}
-            <Text style={styles.info}>{props.quizDesc.numOfQuestions} Questions</Text>
+        <View style={styles.box}>
+          <Text style={styles.title}>Checkpoint: {props.quizDesc.title}</Text>
+          <View>
+            <View style={styles.logistics}>
+              {questions}
+              <Text style={styles.info}>{props.quizDesc.numOfQuestions} Questions</Text>
+            </View>
+            <View style={styles.logistics}>
+              {time}
+              {props.quizDesc.timeLimit ?
+                <Text style={styles.info}>{props.quizDesc.timeLimit} min.</Text> :
+                <Text style={styles.info}>No Time Limit</Text>
+              }
+            </View>
+            <View style={styles.logistics}>
+              {attempts}
+              {props.quizDesc.numOfAttempts === 'unlimited' ?
+                <Text style={styles.info}>Unlimited Attempts Remaining</Text> :
+                <Text style={styles.info}>{props.quizDesc.numOfAttempts} Attempts Remaining</Text>
+              }
+            </View>
           </View>
-          <View style={styles.logistics}>
-            {time}
-            {props.quizDesc.timeLimit ?
-              <Text style={styles.info}>{props.quizDesc.timeLimit} min.</Text> :
-              <Text style={styles.info}>No Time Limit</Text>
+          <Text style={styles.description}>{props.quizDesc.description}</Text>
+          <TouchableOpacity
+            onPress={() =>
+              props.setPage(props.quizDesc.id)
             }
-          </View>
-          <View style={styles.logistics}>
-            {attempts}
-            {props.quizDesc.numOfAttempts === 'unlimited' ?
-              <Text style={styles.info}>Unlimited Attempts Remaining</Text> :
-              <Text style={styles.info}>{props.quizDesc.numOfAttempts} Attempts Remaining</Text>
-            }
-          </View>
+            style={styles.start}
+          >
+            <Text style={styles.startText}>Start Assessment</Text>
+          </TouchableOpacity>
         </View>
-        <Text style={styles.description}>{props.quizDesc.description}</Text>
-        <TouchableOpacity
-          onPress={() =>
-            props.setPage(props.quizDesc.id)
-          }
-          style={styles.start}
-        >
-          <Text style={styles.startText}>Start Assessment</Text>
-        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -66,12 +68,21 @@ const styles = StyleSheet.create({
   container: {
     top: '0%',
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(230, 230, 240)',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  box: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '90%',
+    paddingVertical: '5%',
+    paddingHorizontal: '5%',
+    borderRadius: 10,
+  },
   logistics: {
-    marginTop: '2%',
+    marginTop: '8%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -89,7 +100,8 @@ const styles = StyleSheet.create({
     fontWeight: '200',
     fontSize: 18,
     width: '80%',
-    marginTop: '6%',
+    marginTop: '12%',
+    marginBottom: '5%',
   },
   start: {
     marginTop: '6%',

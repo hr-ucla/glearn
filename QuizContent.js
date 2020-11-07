@@ -42,7 +42,7 @@ export default function QuizContent(props) {
       const backgroundColor = choice.id === selectedId[item.questionId.toString()] ? "#19a5b3" : "rgb(230, 230, 240)";
       return (
         <TouchableOpacity
-          key={choice.id}
+          key={index}
           onPress={() =>
             setSelectedId(prevState => ({
               ...prevState,
@@ -51,7 +51,7 @@ export default function QuizContent(props) {
           }
           style={[styles.item, {backgroundColor}]}
         >
-          <Text style={styles.text}>{choice.choice}</Text>
+          <Text key={index} style={styles.text}>{choice.choice}</Text>
         </TouchableOpacity>
       );
     });
