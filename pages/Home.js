@@ -9,11 +9,16 @@ import Deliverables from '../Deliverables.js';
 import Orientation from './Orientation.js'
 import DataModeling from './DataModeling.js';
 import InheritancePatterns from './Inheritance.js';
-import Module from '../Module.js'
-import Search from '../SearchBar/Search.js'
+import Module from '../Module.js';
+import Search from '../SearchBar/Search.js';
+import QuizContent from '../QuizContent.js'
+import deliverablesData from '../dummyData/deliverablesData.js';
+import valuesVSreferences from '../dummyData/valuesVSreferences.js';
+import QuizDescription from '../QuizDescription.js';
 
 export default function Home() {
   const [ page, setPage ] = useState('home');
+  const [ quizDesc, setQuizDesc ] = useState('');
   const check =
   <Icon
     name="check-circle"
@@ -29,18 +34,23 @@ export default function Home() {
   const home = [
     {
       name: "Student Wiki",
+      id: "Student Wiki"
     },
     {
       name: "Junior Section",
+      id: "Junior Section",
     },
     {
       name: "Senior Section",
+      id: "Senior Section",
     },
     {
       name: "Toy Problems",
+      id:"Toy Problems"
     },
     {
       name: "Quizzes",
+      id: "Quizzes",
     }
   ]
 
@@ -51,7 +61,7 @@ export default function Home() {
   if (page === "Senior Section") {
     return <SeniorSection page={page} setPage={setPage}/>  }
   if (page === "Quizzes") {
-    return <Deliverables  page={page} setPage={setPage} deliverables={deliverablesData} content={quizContentData} />  }
+    return <Deliverables  page={page} setPage={setPage} deliverables={deliverablesData} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
   if (page === "Orientation and Precourse") {
     return <Orientation page={page} setPage={setPage}/>  }
   if (page === "Data Modeling and Classes") {
@@ -64,7 +74,12 @@ export default function Home() {
     return <Module page={page} setPage={setPage} moduleName={page}/>  }
   if (page === "Welcome to Hack Reactor") {
     return <Module page={page} setPage={setPage} moduleName={page}/>  }
-
+  if (page === 1) {
+    return <QuizContent page={page} setPage={setPage} data={valuesVSreferences} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
+  if (page === "Value vs Reference") {
+    return <QuizDescription page={page} setPage={setPage} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
+  if (page === "Scope & Closures") {
+    return <QuizDescription page={page} setPage={setPage} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
   return (
     <View style={styles.container}>
       <Search setPage={setPage} page={page}/>

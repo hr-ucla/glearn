@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Search from './SearchBar/Search.js';
 
 const correct =
     <Icon
@@ -16,79 +17,116 @@ const incorrect =
       size={40}
     />;
 
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
-  },
-];
-
-const moreData = {
-  hello: `var eat = function(meal){\n  console.log('meal before bite:', meal);\n  console.log('now eating', meal.pop());\n  if(meal.length){\n    eat(meal);\n  } else {\n    console.log('done with the meal!');\n  }\n}`
+const initialState = {
+  '1': null,
+  '2': null,
+  '3': null,
+  '4': null,
+  '5': null,
+  '6': null,
+  '7': null,
+  '8': null,
+  '9': null,
+  '10': null,
 }
 
-const Question = ({ item, onPress, style }) => (
-  <View style={styles.container}>
-    <View style={styles.flexboxRow}>
-      <View style={styles.questionNum}>
-        <Text style={styles.number}>1</Text>
-      </View>
-      <Text style={styles.question}>What message will eventually be alerted? After how long?</Text>
-    </View>
-    <Text style={styles.code}>{moreData.hello}</Text>
-    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-      <Text style={styles.text}>{item.title}</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-      <Text style={styles.text}>{item.title}</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-      <Text style={styles.text}>{item.title}</Text>
-    </TouchableOpacity>
-    <View style={styles.bottom}>
-      <View style={styles.flexboxRow}>
+export default function QuizContent(props) {
+  const [selectedId, setSelectedId] = useState(initialState);
+  const [determineCorrect, setDetermineCorrect] = useState(initialState);
+
+
+  const renderItem = ({ item }) => {
+
+
+    const choices = item.multipleChoice.map((choice, index) => {
+      const backgroundColor = choice.id === selectedId[item.questionId.toString()] ? "#19a5b3" : "rgb(230, 230, 240)";
+      return (
+        <TouchableOpacity
+          key={index}
+          onPress={() =>
+            setSelectedId(prevState => ({
+              ...prevState,
+              [item.questionId.toString()]: choice.id
+            }))
+          }
+          style={[styles.item, {backgroundColor}]}
+        >
+          <Text key={index} style={styles.text}>{choice.choice}</Text>
+        </TouchableOpacity>
+      );
+    });
+
+    let determine;
+    if (determineCorrect[item.questionId.toString()]) {
+      determine =
+      <View style={styles.flexboxColumn}>
         {correct}
         <Text style={styles.text}>Correct</Text>
       </View>
-      <View style={styles.flexboxRow}>
-        <TouchableOpacity onPress={onPress} style={styles.checkAnswer}>
-          <Text style={styles.checkAnswerText}>{item.title}</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={onPress} style={styles.checkAnswer}>
-          <Text style={styles.checkAnswerText}>{item.title}</Text>
-        </TouchableOpacity>
+    } else if (determineCorrect[item.questionId.toString()] === false) {
+      determine =
+      <View style={styles.flexboxColumn}>
+        {incorrect}
+        <Text style={styles.text}>Err, try again...</Text>
       </View>
-    </View>
-  </View>
-);
+    } else {
+      determine =
+      <View style={styles.flexboxColumn}>
+      </View>
+    }
 
-export default function QuizContent() {
-  const [selectedId, setSelectedId] = useState(null);
-
-  const renderItem = ({ item }) => {
-    const backgroundColor = item.id === selectedId ? "#fff" : "#19a5b3";
 
     return (
-      <Question
-        item={item}
-        onPress={() => setSelectedId(item.id)}
-        style={{ backgroundColor }}
-      />
+      <View style={styles.container}>
+        <View style={styles.flexboxRow}>
+          <View style={styles.questionNum}>
+            <Text style={styles.number}>{item.questionId}</Text>
+          </View>
+          <Text style={styles.question}>{item.question}</Text>
+        </View>
+        <Text style={styles.code}>{item.code}</Text>
+        {choices}
+        <View style={styles.bottom}>
+          {determine}
+          <TouchableOpacity
+            onPress={() =>
+              setSelectedId(prevState => ({
+                ...prevState,
+                [item.questionId.toString()]: null,
+              }))
+            }
+            style={styles.resetInput}
+          >
+            <Text style={styles.resetInputText}>RESET</Text>
+            <Text style={styles.resetInputText}>INPUT</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {
+            selectedId[item.questionId.toString()] === item.answerId ?
+            setDetermineCorrect(prevState => ({
+              ...prevState,
+              [item.questionId.toString()]: true,
+            })) :
+            setDetermineCorrect(prevState => ({
+              ...prevState,
+              [item.questionId.toString()]: false,
+            }))
+            }}
+            style={styles.checkAnswer}
+          >
+            <Text style={styles.checkAnswerText}>CHECK</Text>
+            <Text style={styles.checkAnswerText}>ANSWER</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     );
   };
+
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#000', justifyContent: 'center', alignItems: 'center'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center'}}>
+      <Search setPage={props.setPage} page={props.page}/>
       <View style={styles.background}>
         <FlatList
-          data={DATA}
+          data={props.data.questions}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           extraData={selectedId}
@@ -101,25 +139,36 @@ export default function QuizContent() {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(230, 230, 240)',
     justifyContent: 'center',
     alignItems: 'center',
   },
   container: {
     marginHorizontal: '4%',
+    marginVertical: '6%',
     marginTop: '6%',
     paddingBottom: 20,
-    borderBottomWidth: 20,
-    borderColor: 'rgb(230, 230, 240)',
+    borderWidth: 10,
+    borderColor: '#fff',
+    backgroundColor: '#fff',
+    borderRadius: 10,
   },
   flexboxRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  flexboxColumn: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   item: {
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+    backgroundColor: 'rgb(230, 230, 240)',
+    borderRadius: 10,
   },
   text: {
     fontSize: 18,
@@ -141,7 +190,6 @@ const styles = StyleSheet.create({
     marginLeft: '2%',
     fontSize: 15,
     fontWeight: 'bold',
-    width: '80%',
   },
   outerCircle: {
     height: 24,
@@ -160,7 +208,7 @@ const styles = StyleSheet.create({
   },
   code: {
     color: 'rgb(56, 58, 66)',
-    backgroundColor: 'rgb(230, 230, 240)',
+    backgroundColor: '#f8f8f8',
     fontSize: 15,
     lineHeight: 15,
     marginVertical: '3%',
@@ -168,19 +216,35 @@ const styles = StyleSheet.create({
     fontFamily: `Menlo`,
   },
   bottom: {
+    paddingTop: '5%',
+    paddingRight: '2%',
+    marginTop: '3%',
     borderTopWidth: 2,
-    borderColor: 'gray',
+    borderColor: '#f8f8f8',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   checkAnswer: {
+    flex: 1,
     backgroundColor: '#19a5b3',
-    width: 100,
-    paddingHorizontal: 40,
     paddingVertical: 10,
     borderRadius: 30,
   },
   checkAnswerText: {
     color: '#fff',
+    textAlign: 'center',
+  },
+  resetInput: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingVertical: 10,
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: '#19a5b3',
+  },
+  resetInputText: {
+    color: '#19a5b3',
+    textAlign: 'center',
   }
 });

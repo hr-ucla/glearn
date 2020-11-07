@@ -19,7 +19,8 @@ export default function Deliverables(props) {
           renderItem={({item}) =>
             <TouchableOpacity
               onPress={() => {
-                props.setPage(item.id)
+                props.setQuizDesc(item);
+                props.setPage(item.title);
               }}
               style={styles.item}
             >
@@ -68,9 +69,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 75,
-    backgroundColor: "#dddddd",
+    backgroundColor: "#fff",
     borderTopWidth: 1,
-    borderTopColor: 'white',
+    borderTopColor: '#dddddd',
   },
   leftSide: {
     marginLeft: '2%',
