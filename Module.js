@@ -86,7 +86,15 @@ export default function Module(props) {
         setModule(results.data);
       })
       .catch((err) => console.error(err));
-  }, []);
+  }, [])
+
+  const displayVideo = () => {
+    if (module.video) {
+      return (
+        <WebView allowsFullscreenVideo allowsInlineMediaPlayback mediaPlaybackRequiresUserAction source={{ uri: `${module.video}` }} style={styles.WebView}/>
+      );
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -94,7 +102,7 @@ export default function Module(props) {
       <ScrollView style={styles.moduleContainer}>
         <Text style={styles.moduleName}>{module.moduleName}</Text>
         <HTMLView value={module.content} stylesheet={styles} />
-        <WebView allowsFullscreenVideo allowsInlineMediaPlayback mediaPlaybackRequiresUserAction source={{ uri: 'https://www.youtube.com/embed/SzckT9-rnrM' }} style={styles.WebView}/>
+        {displayVideo()}
       </ScrollView>
     </SafeAreaView>
   );
