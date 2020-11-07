@@ -24,12 +24,7 @@ export default function StudentWiki(props) {
       name: "Reference Resources",
     }
   ]
-  const check =
-  <Icon
-    name="check-circle"
-    color="#19a5b3"
-    size={40}
-  />;
+
   const folder = 
   <Icon
     name="folder"
@@ -48,9 +43,6 @@ export default function StudentWiki(props) {
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>
-          {/* <View style={styles.rightSide}>
-            <Text style={styles.check}>{check}</Text>
-          </View> */}
         </TouchableOpacity>
         )}
         keyExtractor={item => item.id}

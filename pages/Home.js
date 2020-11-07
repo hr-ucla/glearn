@@ -19,12 +19,7 @@ import QuizDescription from '../QuizDescription.js';
 export default function Home() {
   const [ page, setPage ] = useState('home');
   const [ quizDesc, setQuizDesc ] = useState('');
-  const check =
-  <Icon
-    name="check-circle"
-    color="#19a5b3"
-    size={40}
-  />;
+
   const folder =
   <Icon
     name="folder"
@@ -89,8 +84,7 @@ export default function Home() {
         renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            setPage(item.name),
-            console.log(page)}}>
+            setPage(item.name)}}>
           <View style={styles.leftSide}>
             <Text style={styles.listItem}>{folder} {item.name}</Text>
           </View>
