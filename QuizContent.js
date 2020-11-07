@@ -122,7 +122,7 @@ export default function QuizContent(props) {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: '#fff', justifyContent: 'center', alignItems: 'center'}}>
+    <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <Search setPage={props.setPage} page={props.page}/>
       <View style={styles.background}>
         <FlatList
