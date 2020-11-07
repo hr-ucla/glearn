@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Image, SafeAreaView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import Search from './SearchBar/Search.js';
 import Icon from 'react-native-vector-icons/Fontisto';
 
 export default function QuizDescription(props) {
@@ -22,32 +23,36 @@ export default function QuizDescription(props) {
       size={40}
     />;
 
-  // const details = props.description.map({
-  //   return (
-
-  //   );
-  // })
-
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#000'}}>
+      <Search setPage={props.setPage} page={props.page}/>
       <View style={styles.container}>
-        <Text style={styles.title}>Checkpoint: Value vs Reference</Text>
+        <Text style={styles.title}>Checkpoint: {props.quizDesc.title}</Text>
         <View>
           <View style={styles.logistics}>
             {questions}
-            <Text style={styles.info}>12 Questions</Text>
+            <Text style={styles.info}>{props.quizDesc.numOfQuestions} Questions</Text>
           </View>
           <View style={styles.logistics}>
             {time}
-            <Text style={styles.info}>No Time Limit</Text>
+            {props.quizDesc.timeLimit ?
+              <Text style={styles.info}>{props.quizDesc.timeLimit} min.</Text> :
+              <Text style={styles.info}>No Time Limit</Text>
+            }
           </View>
           <View style={styles.logistics}>
             {attempts}
-            <Text style={styles.info}>Unlimited Attempts Remaining</Text>
+            {props.quizDesc.numOfAttempts === 'unlimited' ?
+              <Text style={styles.info}>Unlimited Attempts Remaining</Text> :
+              <Text style={styles.info}>{props.quizDesc.numOfAttempts} Attempts Remaining</Text>
+            }
           </View>
         </View>
-        <Text style={styles.description}>This assessment contains multiple choice challenges. Answer as many questions as possible and submit the entire assessment at once when you're done.</Text>
+        <Text style={styles.description}>{props.quizDesc.description}</Text>
         <TouchableOpacity
+          onPress={() =>
+            props.setPage(props.quizDesc.id)
+          }
           style={styles.start}
         >
           <Text style={styles.startText}>Start Assessment</Text>

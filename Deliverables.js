@@ -19,7 +19,8 @@ export default function Deliverables(props) {
           renderItem={({item}) =>
             <TouchableOpacity
               onPress={() => {
-                props.setPage(item.id)
+                props.setQuizDesc(item);
+                props.setPage(item.title);
               }}
               style={styles.item}
             >
