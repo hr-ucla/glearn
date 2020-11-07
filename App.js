@@ -6,6 +6,8 @@ import Home from './pages/Home.js';
 import LoginScreen from './screens/LoginScreen.js';
 import LoadingScreen from './screens/LoadingScreen.js';
 
+console.ignoredYellowBox = ['Warning: Each', 'Warning: Failed']
+
 firebase.initializeApp(firebaseConfig);
 
 const AppSwitchNavigator = createSwitchNavigator(
