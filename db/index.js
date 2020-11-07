@@ -11,12 +11,20 @@ const moduleSchema = new mongoose.Schema({
   moduleId: Number,
   moduleName: String,
   keywords: [{ type: String }],
-  content: String
+  video: String,
+  content: String,
+});
+
+const userSchema = new mongoose.Schema({
+  userId: String,
+  password: String,
 });
 
 const Module = mongoose.model('Module', moduleSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = {
   Module,
+  User,
   connection,
 };

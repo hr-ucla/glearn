@@ -18,9 +18,7 @@ const AppSwitchNavigator = createSwitchNavigator(
     initialRouteName: 'LoadingScreen'
   },
 );
-
 const AppNavigator = createAppContainer(AppSwitchNavigator);
-
 export default function App() {
   return (
     <>
