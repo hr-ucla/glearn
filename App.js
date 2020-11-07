@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
-// import firebase from 'firebase';
-// import { firebaseConfig } from './config/firebase.js';
+import firebase from 'firebase';
+import { firebaseConfig } from './config/firebase.js';
 import Home from './pages/Home.js';
 import LoginScreen from './screens/LoginScreen.js';
 import LoadingScreen from './screens/LoadingScreen.js';
