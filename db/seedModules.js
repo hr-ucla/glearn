@@ -24,10 +24,11 @@ const dataSeeder = () => {
       console.error(err);
     } else {
       console.log('Quizzes seeded successfully!');
+      db.connection.close();
     }
   });
 
-  db.connection.close();
+
 };
 
 dataSeeder();
