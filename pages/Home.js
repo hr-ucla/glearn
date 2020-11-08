@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { FlatList, SafeAreaView, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import StudentWiki from './StudentWiki.js';
 import JuniorSection from './JuniorSection.js';
@@ -17,8 +18,18 @@ import valuesVSreferences from '../dummyData/valuesVSreferences.js';
 import QuizDescription from '../QuizDescription.js';
 
 export default function Home() {
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/deliverables`)
+      .then(results => {
+        setDeliverables(results.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
   const [ page, setPage ] = useState('home');
-  const [ quizDesc, setQuizDesc ] = useState('');
+  const [ deliverables, setDeliverables ] = useState(null);
+  const [ quizDesc, setQuizDesc ] = useState(null);
+  const [ actualQuiz, setActualQuiz ] = useState(null);
 
   const folder =
   <Icon
@@ -56,7 +67,7 @@ export default function Home() {
   if (page === "Senior Section") {
     return <SeniorSection page={page} setPage={setPage}/>  }
   if (page === "Quizzes") {
-    return <Deliverables  page={page} setPage={setPage} deliverables={deliverablesData} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
+    return <Deliverables  page={page} setPage={setPage} deliverables={deliverables} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
   if (page === "Orientation and Precourse") {
     return <Orientation page={page} setPage={setPage}/>  }
   if (page === "Data Modeling and Classes") {
@@ -70,9 +81,9 @@ export default function Home() {
   if (page === "Welcome to Hack Reactor") {
     return <Module page={page} setPage={setPage} moduleName={page}/>  }
   if (page === 1) {
-    return <QuizContent page={page} setPage={setPage} data={valuesVSreferences} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
+    return <QuizContent page={page} setPage={setPage} data={actualQuiz} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
   if (page === "Value vs Reference") {
-    return <QuizDescription page={page} setPage={setPage} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
+    return <QuizDescription page={page} setPage={setPage} quizDesc={quizDesc} setQuizDesc={setQuizDesc} actualQuiz={actualQuiz} setActualQuiz={setActualQuiz}/>  }
   if (page === "Scope & Closures") {
     return <QuizDescription page={page} setPage={setPage} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
   return (
@@ -86,11 +97,9 @@ export default function Home() {
           onPress={() => {
             setPage(item.name)}}>
           <View style={styles.leftSide}>
-            <Text style={styles.listItem}>{folder} {item.name}</Text>
+            {folder}
+            <Text style={styles.listItem}>{item.name}</Text>
           </View>
-          {/* <View style={styles.rightSide}>
-            <Text style={styles.check}>{check}</Text>
-          </View> */}
         </TouchableOpacity>
         )}
         keyExtractor={item => item.id}
@@ -106,41 +115,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   listTitle:{
-    paddingTop: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 2,
-    fontSize: 18,
+    paddingTop: 8,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingBottom: 8,
+    fontSize: 19,
     fontWeight: 'bold',
     backgroundColor: '#f79020',
     color: '#fff',
     justifyContent:"space-between",
-    marginBottom:25,
+    marginBottom:15,
   },
   listItem:{
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 50,
     backgroundColor: "white",
-    borderTopWidth: 1,
     borderTopColor: 'white',
-    marginTop:5,
     fontSize:20,
     fontWeight:"bold",
-  },
-  check:{
-    flex: 1,
-    alignItems: 'flex-end',
-    marginRight: '2%',
+    marginLeft:"2%",
   },
   leftSide: {
+    alignItems:"center",
     marginLeft: '2%',
-  },
-  rightSide: {
-    flex: 1,
-    alignItems: 'flex-end',
-    marginRight: '2%',
+    flexDirection:"row",
+    justifyContent:"flex-start",
+    paddingVertical:10,
   },
 });

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Search from './SearchBar/Search.js';
@@ -31,6 +31,7 @@ const initialState = {
 }
 
 export default function QuizContent(props) {
+
   const [selectedId, setSelectedId] = useState(initialState);
   const [determineCorrect, setDetermineCorrect] = useState(initialState);
 

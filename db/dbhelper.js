@@ -25,4 +25,26 @@ module.exports = {
       }
     });
   },
+
+  getDeliverables: (callback) => {
+    db.Deliverable.find({}).exec((err, results) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, results);
+      }
+    });
+  },
+
+  getQuiz: (id, callback) => {
+    db.Quiz.findOne({
+      'id': id
+    }).exec((err, results) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, results);
+      }
+    });
+  },
 };

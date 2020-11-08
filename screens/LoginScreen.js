@@ -51,7 +51,6 @@ export default function LoginScreen() {
   };
 
   const onSignIn = (googleUser) => {
-    console.log('Google Auth Response', googleUser);
     // We need to register an Observer on Firebase Auth to make sure auth is initialized.
     var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
       unsubscribe();
@@ -98,8 +97,6 @@ export default function LoginScreen() {
             var credential = error.credential;
             // ...
           });
-      } else {
-        console.log('User already signed-in Firebase.');
       }
     });
   };
