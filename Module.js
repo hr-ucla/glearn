@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Image, SafeAreaView, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Button, SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { ViewPropTypes } from 'react-native-web';
 import HTMLView from 'react-native-htmlview';
 import { WebView } from 'react-native-webview';
@@ -75,7 +75,12 @@ export default function Module(props) {
     },
     WebView: {
       height: 250
-    }
+    },
+    loadingIcon: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   });
 
   const [module, setModule] = useState('');
@@ -91,19 +96,27 @@ export default function Module(props) {
   const displayVideo = () => {
     if (module.video) {
       return (
-        <WebView allowsFullscreenVideo allowsInlineMediaPlayback mediaPlaybackRequiresUserAction source={{ uri: `${module.video}` }} style={styles.WebView}/>
+        <WebView allowsFullscreenVideo allowsInlineMediaPlayback mediaPlaybackRequiresUserAction source={{ uri: `${module.video}` }} style={styles.WebView} />
       );
     }
   };
 
-  return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
-      <Search setPage={props.setPage} page={props.page} />
-      <ScrollView style={styles.moduleContainer}>
-        <Text style={styles.moduleName}>{module.moduleName}</Text>
-        <HTMLView value={module.content} stylesheet={styles} />
-        {displayVideo()}
-      </ScrollView>
-    </SafeAreaView>
-  );
+  if (!module) {
+    return (
+      <View style={styles.loadingIcon}>
+        <ActivityIndicator size="large" />
+      </View>
+    )
+  } else {
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+        <Search setPage={props.setPage} page={props.page} />
+        <ScrollView style={styles.moduleContainer}>
+          <Text style={styles.moduleName}>{module.moduleName}</Text>
+          <HTMLView value={module.content} stylesheet={styles} />
+          {displayVideo()}
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 }

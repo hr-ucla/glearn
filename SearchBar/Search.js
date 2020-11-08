@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView, Dimensions, StyleSheet, View, TextInput, Text, Image,TouchableHighlight, ScrollView, TouchableOpacity, FlatList } from 'react-native'
+import { SafeAreaView, Dimensions, StyleSheet, View, TextInput, Text, Image,TouchableHighlight, ScrollView, TouchableOpacity, FlatList, List, ListItem } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import Animated, { Easing } from 'react-native-reanimated'
 import axios from 'axios';
@@ -9,7 +9,7 @@ const { Value, timing } = Animated
 const width = Dimensions.get('window').width
 const height = Dimensions.get('window').height
 
-const backButton = 
+const backButton =
 <Icon
   name="arrow-left"
   color="black"
@@ -17,7 +17,7 @@ const backButton =
 />;
 const searchButton = <Icon name="search" size={16} color="#cccccc" />;
 class Search extends React.Component {
-  
+
   constructor(props){
     super(props)
 
@@ -132,7 +132,7 @@ class Search extends React.Component {
     this.refs.input.blur();
 
   }
-  
+
   render(){
 
     if (this.props.page === 'Student Wiki' || this.props.page === 'Junior Section' || this.props.page === 'Senior Section' || this.props.page === 'Quizzes') {
@@ -152,7 +152,7 @@ class Search extends React.Component {
                     onPress={() => {
                       this.props.setPage("home"),
                       console.log(this.props.page)}}>
-                    <Image 
+                    <Image
                       source={require('../logo.png')}
                       style={{width: 152, height: 30, marginLeft:"20%"}}
                     />
@@ -179,12 +179,12 @@ class Search extends React.Component {
                       <Icon name="chevron-left" size={22} color="#000000" />
                     </TouchableHighlight>
                   </Animated.View>
-                  <TextInput 
+                  <TextInput
                     ref="input"
                     placeholder="Search g-Learn"
                     clearButtonMode="always"
                     value={this.state.keyword}
-                    onChangeText={(value) => {this.setState({keyword: value}, 
+                    onChangeText={(value) => {this.setState({keyword: value},
                       () => {
                       this.setState({searching: !this.state.searching});
                       this.getSearches(value);
@@ -195,7 +195,7 @@ class Search extends React.Component {
               </View>
             </View>
           </SafeAreaView>
-  
+
           <Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
             <SafeAreaView style={styles.content_safe_area}>
               <View style={styles.content_inner}>
@@ -204,8 +204,8 @@ class Search extends React.Component {
                   this.state.keyword === ''
                   ?
                   <View style={styles.image_placeholder_container}>
-                    <Image 
-                      source={require('../search.jpg')} 
+                    <Image
+                      source={require('../search.jpg')}
                       style={styles.image_placeholder}
                     />
                     <Text style={styles.image_placeholder_text}>
@@ -217,6 +217,7 @@ class Search extends React.Component {
                   <View style={styles.search_item}>
                   {/* <Text>{this.state.keyword}</Text> */}
                   <Text style={styles.item_icon}>{searchButton} </Text>
+                  <List>
                   <FlatList
                     contentContainerStyle={styles.search_item}
                     data ={this.state.searchData}
@@ -225,14 +226,16 @@ class Search extends React.Component {
                       onPress={() => {
                         this.props.setPage(item.moduleName)
                         this.setState({searching: !this.state.searching})
-                        }}>
+                        }}
+                      >
                       <View>
                         <Text>{item.moduleName}</Text>
                       </View>
                     </TouchableOpacity>
                     )}
-                    keyExtractor={item => item.id}
+                    keyExtractor={(item) => item.id}
                   />
+                  </List>
                 </View>
                 }
               </View>
@@ -258,7 +261,7 @@ class Search extends React.Component {
                     onPress={() => {
                       this.props.setPage("home"),
                       console.log(this.props.page)}}>
-                    <Image 
+                    <Image
                       source={require('../logo.png')}
                       style={{width: 152, height: 30, marginLeft:"20%"}}
                     />
@@ -285,12 +288,12 @@ class Search extends React.Component {
                       <Icon name="chevron-left" size={22} color="#000000" />
                     </TouchableHighlight>
                   </Animated.View>
-                  <TextInput 
+                  <TextInput
                     ref="input"
                     placeholder="Search g-Learn"
                     clearButtonMode="always"
                     value={this.state.keyword}
-                    onChangeText={(value) => {this.setState({keyword: value}, 
+                    onChangeText={(value) => {this.setState({keyword: value},
                       () => {
                       this.setState({searching: !this.state.searching});
                       this.getSearches(value);
@@ -301,7 +304,7 @@ class Search extends React.Component {
               </View>
             </View>
           </SafeAreaView>
-  
+
           <Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
             <SafeAreaView style={styles.content_safe_area}>
               <View style={styles.content_inner}>
@@ -310,8 +313,8 @@ class Search extends React.Component {
                   this.state.keyword === ''
                   ?
                   <View style={styles.image_placeholder_container}>
-                    <Image 
-                      source={require('../search.jpg')} 
+                    <Image
+                      source={require('../search.jpg')}
                       style={styles.image_placeholder}
                     />
                     <Text style={styles.image_placeholder_text}>
@@ -363,7 +366,7 @@ class Search extends React.Component {
                   <TouchableOpacity
                     onPress={() => {
                       this.props.setPage("home")}}>
-                    <Image 
+                    <Image
                       source={require('../logo.png')}
                       style={{width: 152, height: 30, marginLeft:"20%"}}
                     />
@@ -390,12 +393,12 @@ class Search extends React.Component {
                       <Icon name="chevron-left" size={22} color="#000000" />
                     </TouchableHighlight>
                   </Animated.View>
-                  <TextInput 
+                  <TextInput
                     ref="input"
                     placeholder="Search g-Learn"
                     clearButtonMode="always"
                     value={this.state.keyword}
-                    onChangeText={(value) => {this.setState({keyword: value}, 
+                    onChangeText={(value) => {this.setState({keyword: value},
                       () => {
                       this.setState({searching: !this.state.searching});
                       this.getSearches(value);
@@ -406,7 +409,7 @@ class Search extends React.Component {
               </View>
             </View>
           </SafeAreaView>
-  
+
           <Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
             <SafeAreaView style={styles.content_safe_area}>
               <View style={styles.content_inner}>
@@ -415,8 +418,8 @@ class Search extends React.Component {
                   this.state.keyword === ''
                   ?
                   <View style={styles.image_placeholder_container}>
-                    <Image 
-                      source={require('../search.jpg')} 
+                    <Image
+                      source={require('../search.jpg')}
                       style={styles.image_placeholder}
                     />
                     <Text style={styles.image_placeholder_text}>
@@ -461,7 +464,7 @@ class Search extends React.Component {
                 <TouchableOpacity
                   onPress={() => {
                     this.props.setPage("home")}}>
-                  <Image 
+                  <Image
                     source={require('../logo.png')}
                     style={{width: 152, height: 30, marginLeft:"35%"}}
                   />
@@ -488,12 +491,12 @@ class Search extends React.Component {
                     <Icon name="chevron-left" size={22} color="#000000" />
                   </TouchableHighlight>
                 </Animated.View>
-                <TextInput 
+                <TextInput
                   ref="input"
                   placeholder="Search g-Learn"
                   clearButtonMode="always"
                   value={this.state.keyword}
-                  onChangeText={(value) => {this.setState({keyword: value}, 
+                  onChangeText={(value) => {this.setState({keyword: value},
                     () => {
                     this.setState({searching: !this.state.searching});
                     this.getSearches(value);
@@ -504,7 +507,7 @@ class Search extends React.Component {
             </View>
           </View>
         </SafeAreaView>
-      
+
         <Animated.View style={[styles.content, { opacity: this._content_opacity, transform: [{translateY: this._content_translate_y }] }]}>
           <SafeAreaView style={styles.content_safe_area}>
             <View style={styles.content_inner}>
@@ -513,8 +516,8 @@ class Search extends React.Component {
                 this.state.keyword === ''
                 ?
                   <View style={styles.image_placeholder_container}>
-                    <Image 
-                      source={require('../search.jpg')} 
+                    <Image
+                      source={require('../search.jpg')}
                       style={styles.image_placeholder}
                     />
                     <Text style={styles.image_placeholder_text}>
@@ -530,15 +533,15 @@ class Search extends React.Component {
                       contentContainerStyle={styles.search_item}
                       data ={this.state.searchData}
                       renderItem={({item}) => (
-                      <TouchableOpacity
-                        onPress={() => {
-                          this.props.setPage(item.moduleName)
-                          this.setState({searching: !this.state.searching})
-                          }}>
+                      // <TouchableOpacity
+                      //   onPress={() => {
+                      //     this.props.setPage(item.moduleName)
+                      //     this.setState({searching: !this.state.searching})
+                      //     }}>
                         <View>
-                          <Text>{item.moduleName}</Text>
+                          <Text>{item.moduleName}\n</Text>
                         </View>
-                      </TouchableOpacity>
+                      // </TouchableOpacity>
                       )}
                       keyExtractor={item => item.id}
                     />
@@ -549,7 +552,7 @@ class Search extends React.Component {
         </Animated.View>
       </>
     );
-    
+
   }
 }
 
