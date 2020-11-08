@@ -6,13 +6,13 @@ const deliverablesData = [
         id: 1,
         title: 'Value vs Reference',
         dueDate: '11/9/2020',
-        completed: true,
-        percentage: 100,
+        completed: false,
+        percentage: 0,
         numOfQuestions: 10,
         timeLimit: null,
         numOfAttempts: 'unlimited',
         description: "This assessment contains multiple choice challenges. Answer as many questions as possible and submit the entire assessment at once when you're done.",
-        numOfCorrect: 10
+        numOfCorrect: 0
       },
       {
         id: 2,

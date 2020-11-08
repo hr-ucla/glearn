@@ -35,6 +35,26 @@ app.get('/api/search/keywords/:term', (req, res) => {
   });
 });
 
+app.get('/api/deliverables', (req, res) => {
+  dbHelpers.getDeliverables(req, (err, results) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+app.get('/api/quiz/:id', (req, res) => {
+  dbHelpers.getQuiz(req.params.id, (err, results) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
 // Port and connection
 let port = 3000;
 app.listen(port, () => console.log(`Connected and listening at port ${port}`));

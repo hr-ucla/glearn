@@ -15,16 +15,51 @@ const moduleSchema = new mongoose.Schema({
   content: String,
 });
 
-const userSchema = new mongoose.Schema({
-  userId: String,
-  password: String,
+const deliverableSchema = new mongoose.Schema({
+  title: String,
+  data: [
+    {
+      id: { type: Number },
+      title: { type: String },
+      dueDate: { type: String },
+      completed: { type: Boolean },
+      percentage: { type: Number },
+      numOfQuestions: { type: Number },
+      timeLimit: { type: Number },
+      numOfAttempts: { type: String },
+      description: { type: String },
+      numOfCorrect: { type: Number }
+    }
+  ],
+});
+
+const quizSchema = new mongoose.Schema({
+  id: Number,
+  title: String,
+  numOfQuestions: Number,
+  questions: [
+    {
+      questionId: { type: Number },
+      question: { type: String },
+      code: { type: String },
+      multipleChoice: [
+        {
+          id: { type: Number },
+          choice: { type: String },
+        }
+      ],
+      answerId: { type: Number },
+    }
+  ]
 });
 
 const Module = mongoose.model('Module', moduleSchema);
-const User = mongoose.model('User', userSchema);
+const Deliverable = mongoose.model('Deliverable', deliverableSchema);
+const Quiz = mongoose.model('Quiz', quizSchema);
 
 module.exports = {
   Module,
-  User,
+  Deliverable,
+  Quiz,
   connection,
 };

@@ -15,17 +15,17 @@ export default function SeniorSection(props) {
       name: "System Design Capstone",
     },
   ]
-  const folder = 
+  const folder =
   <Icon
     name="folder"
     color="grey"
     size={35}
   />;
-  
+
   return (
     <View style={styles.container}>
       <Search setPage={props.setPage} page={props.page}/>
-      <Text style={styles.listTitle}>Student Wiki </Text>
+      <Text style={styles.listTitle}>Senior Section </Text>
       <FlatList
         data ={senior}
         renderItem={({item}) => (
@@ -48,40 +48,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   listTitle:{
-    paddingTop: 2,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 2,
-    fontSize: 18,
+    paddingTop: 8,
+    paddingLeft: 8,
+    paddingRight: 8,
+    paddingBottom: 8,
+    fontSize: 19,
     fontWeight: 'bold',
     backgroundColor: '#f79020',
     color: '#fff',
-    marginBottom:25,
+    justifyContent:"space-between",
+    marginBottom:15,
   },
   listItem:{
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 50,
     backgroundColor: "white",
-    borderTopWidth: 1,
     borderTopColor: 'white',
-    marginTop:5,
     fontSize:20,
     fontWeight:"bold",
-  },
-  check:{
-    flex: 1,
-    alignItems: 'flex-end',
-    marginRight: '2%',
+    marginLeft:"2%",
   },
   leftSide: {
+    alignItems:"center",
     marginLeft: '2%',
-  },
-  rightSide: {
-    flex: 1,
-    alignItems: 'flex-end',
-    marginRight: '2%',
+    flexDirection:"row",
+    justifyContent:"flex-start",
+    paddingVertical:10,
   },
 });

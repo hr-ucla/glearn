@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import { Button, Image, SafeAreaView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import axios from 'axios';
 import Search from './SearchBar/Search.js';
 import Icon from 'react-native-vector-icons/Fontisto';
 
@@ -52,7 +53,12 @@ export default function QuizDescription(props) {
           <Text style={styles.description}>{props.quizDesc.description}</Text>
           <TouchableOpacity
             onPress={() =>
-              props.setPage(props.quizDesc.id)
+              axios.get(`http://localhost:3000/api/quiz/${props.quizDesc.id}`)
+                .then(results => {
+                  props.setActualQuiz(results.data);
+                  props.setPage(props.quizDesc.id)
+                })
+                .catch((err) => console.error(err))
             }
             style={styles.start}
           >
