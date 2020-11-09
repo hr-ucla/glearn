@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, FlatList, Image, SafeAreaView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Search from './SearchBar/Search.js';
 
@@ -34,6 +35,7 @@ export default function QuizContent(props) {
 
   const [selectedId, setSelectedId] = useState(initialState);
   const [determineCorrect, setDetermineCorrect] = useState(initialState);
+  const [numberOfCorrect, setNumberOfCorrect] = useState(1);
 
 
   const renderItem = ({ item }) => {
@@ -76,6 +78,28 @@ export default function QuizContent(props) {
       </View>
     }
 
+    const update = () => {
+      setNumberOfCorrect(numberOfCorrect + 1);
+      axios.put(`http://localhost:3000/api/deliverables/${props.data.id}`, {
+        numOfCorrect: numberOfCorrect,
+        completed: true,
+        percentage: numberOfCorrect / props.data.numOfQuestions * 100,
+      })
+        .then(() => {
+          setDetermineCorrect(prevState => ({
+            ...prevState,
+            [item.questionId.toString()]: true,
+          }))
+          return axios.get(`http://localhost:3000/api/deliverables`)
+        })
+        .then(results => {
+          props.setDeliverables(results.data);
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
+
 
     return (
       <View style={styles.container}>
@@ -102,11 +126,10 @@ export default function QuizContent(props) {
             <Text style={styles.resetInputText}>INPUT</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => {
-            selectedId[item.questionId.toString()] === item.answerId ?
-            setDetermineCorrect(prevState => ({
-              ...prevState,
-              [item.questionId.toString()]: true,
-            })) :
+            selectedId[item.questionId.toString()] === item.answerId
+            ?
+            update()
+            :
             setDetermineCorrect(prevState => ({
               ...prevState,
               [item.questionId.toString()]: false,
