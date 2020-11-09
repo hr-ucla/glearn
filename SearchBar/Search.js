@@ -138,12 +138,12 @@ class Search extends React.Component {
     if (this.props.page === 'Student Wiki' || this.props.page === 'Junior Section' || this.props.page === 'Senior Section' || this.props.page === 'Quizzes') {
       return (
         <>
-          <SafeAreaView style={styles.header_safe_area}>
+         <SafeAreaView style={styles.header_safe_area}>
             <View style={styles.header}>
               <View style={styles.header_inner}>
                 <TouchableOpacity
                   onPress={() => {
-                  this.props.setPage("home")
+                  this.props.setPage('Home')
                   }}>
                   <Text>{backButton} </Text>
               </TouchableOpacity>
