@@ -1,4 +1,4 @@
-const valuesVSreferences =
+const valuesVSreferences = [
   {
     id: 1,
     title: 'Value vs Reference Checkpoint',
@@ -249,6 +249,7 @@ const valuesVSreferences =
         answerId: 38,
       }
     ]
-  };
+  }
+];
 
-export default valuesVSreferences;
+module.exports = valuesVSreferences;

@@ -283,6 +283,6 @@ const deliverablesData = [
       }
     ]
   }
-]
+];
 
-export default deliverablesData;
+module.exports = deliverablesData;

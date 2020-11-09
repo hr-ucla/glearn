@@ -36,6 +36,27 @@ module.exports = {
     });
   },
 
+  updateQuizScore: (req, callback) => {
+    db.Deliverable.findOneAndUpdate(
+      {
+        'data.id': req.params.id
+      },
+      { '$set':
+        {
+          'data.$.numOfCorrect': req.body.numOfCorrect,
+          'data.$.percentage': req.body.percentage,
+          'data.$.completed': req.body.completed
+        }
+      }
+    ).exec((err, results) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, results);
+      }
+    });
+  },
+
   getQuiz: (id, callback) => {
     db.Quiz.findOne({
       'id': id

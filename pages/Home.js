@@ -81,7 +81,7 @@ export default function Home() {
   if (page === "Welcome to Hack Reactor") {
     return <Module page={page} setPage={setPage} moduleName={page}/>  }
   if (page === 1) {
-    return <QuizContent page={page} setPage={setPage} data={actualQuiz} quizDesc={quizDesc} setQuizDesc={setQuizDesc}/>  }
+    return <QuizContent page={page} setPage={setPage} data={actualQuiz} quizDesc={quizDesc} setQuizDesc={setQuizDesc} deliverables={deliverables} setDeliverables={setDeliverables} />  }
   if (page === "Value vs Reference") {
     return <QuizDescription page={page} setPage={setPage} quizDesc={quizDesc} setQuizDesc={setQuizDesc} actualQuiz={actualQuiz} setActualQuiz={setActualQuiz}/>  }
   if (page === "Scope & Closures") {

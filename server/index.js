@@ -45,6 +45,16 @@ app.get('/api/deliverables', (req, res) => {
   });
 });
 
+app.put('/api/deliverables/:id', (req, res) => {
+  dbHelpers.updateQuizScore(req, (err, results) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.status(200).json(results);
+    }
+  });
+})
+
 app.get('/api/quiz/:id', (req, res) => {
   dbHelpers.getQuiz(req.params.id, (err, results) => {
     if (err) {
@@ -54,6 +64,8 @@ app.get('/api/quiz/:id', (req, res) => {
     }
   });
 });
+
+
 
 // Port and connection
 let port = 3000;
