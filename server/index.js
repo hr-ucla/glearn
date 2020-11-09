@@ -36,7 +36,7 @@ app.get('/api/search/keywords/:term', (req, res) => {
 });
 
 app.get('/api/deliverables', (req, res) => {
-  dbHelpers.getDeliverables(req, (err, results) => {
+  dbHelpers.getDeliverables((err, results) => {
     if (err) {
       res.status(400).send(err);
     } else {

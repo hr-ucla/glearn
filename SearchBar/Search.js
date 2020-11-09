@@ -1,5 +1,5 @@
 import React from 'react'
-import { SafeAreaView, Dimensions, StyleSheet, View, TextInput, Text, Image,TouchableHighlight, ScrollView, TouchableOpacity, FlatList } from 'react-native'
+import { SafeAreaView, Dimensions, StyleSheet, View, TextInput, Text, Image,TouchableHighlight, ScrollView, TouchableOpacity, FlatList, List, ListItem } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome5'
 import Animated, { Easing } from 'react-native-reanimated'
 import axios from 'axios';
@@ -639,7 +639,7 @@ class Search extends React.Component {
                         <View style={styles.search_result}>
                         <Text style={styles.search_text}>{searchButton}    {item.moduleName}</Text>
                         </View>
-                      </TouchableOpacity>
+                      // </TouchableOpacity>
                       )}
                       keyExtractor={item => item.id}
                     />

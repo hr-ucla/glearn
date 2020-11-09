@@ -63,7 +63,7 @@ export default function Module(props) {
       borderColor: 'gray',
     },
     ul: {
-      marginLeft: 15,
+      marginLeft: 20,
       marginTop: 10,
       lineHeight: 22,
     },
