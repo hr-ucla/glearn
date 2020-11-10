@@ -17,6 +17,8 @@ import deliverablesData from '../dummyData/deliverablesData.js';
 import valuesVSreferences from '../dummyData/valuesVSreferences.js';
 import QuizDescription from '../QuizDescription.js';
 
+console.disableYellowBox = true;
+
 export default function Home() {
   useEffect(() => {
     axios.get(`http://localhost:3000/api/deliverables`)
