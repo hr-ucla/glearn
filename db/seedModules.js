@@ -29,8 +29,6 @@ const dataSeeder = () => {
       db.connection.close();
     }
   });
-
-
 };
 
 dataSeeder();

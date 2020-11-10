@@ -138,12 +138,12 @@ class Search extends React.Component {
     if (this.props.page === 'Student Wiki' || this.props.page === 'Junior Section' || this.props.page === 'Senior Section' || this.props.page === 'Quizzes') {
       return (
         <>
-          <SafeAreaView style={styles.header_safe_area}>
+         <SafeAreaView style={styles.header_safe_area}>
             <View style={styles.header}>
               <View style={styles.header_inner}>
                 <TouchableOpacity
                   onPress={() => {
-                  this.props.setPage("home")
+                  this.props.setPage('Home')
                   }}>
                   <Text>{backButton} </Text>
               </TouchableOpacity>
@@ -468,7 +468,7 @@ class Search extends React.Component {
                       console.log(this.props.page)}}>
                     <Image
                       source={require('../logo.png')}
-                      style={{width: 170, height: 40, marginLeft:"35%"}}
+                      style={{width: 170, height: 40, marginLeft:"12%"}}
                     />
                   </TouchableOpacity>
                 </View>
@@ -529,24 +529,24 @@ class Search extends React.Component {
                   </View>
                   :
                   <View style={styles.search_item}>
-                    {/* <Text>{this.state.keyword}</Text> */}
-                    <FlatList
-                      contentContainerStyle={styles.search_item}
-                      data ={this.state.searchData}
-                      renderItem={({item}) => (
-                      <TouchableOpacity
-                        onPress={() => {
-                          this.props.setPage(item.moduleName)
-                          this.setState({searching: !this.state.searching})
-                          }}>
-                        <View style={styles.search_result}>
-                        <Text style={styles.search_text}>{searchButton}    {item.moduleName}</Text>
-                        </View>
-                      </TouchableOpacity>
-                      )}
-                      keyExtractor={item => item.id}
-                    />
-                  </View>
+                  {/* <Text>{this.state.keyword}</Text> */}
+                  <FlatList
+                    contentContainerStyle={styles.search_item}
+                    data ={this.state.searchData}
+                    renderItem={({item}) => (
+                    <TouchableOpacity
+                      onPress={() => {
+                        this.props.setPage(item.moduleName)
+                        this.setState({searching: !this.state.searching})
+                        }}>
+                      <View style={styles.search_result}>
+                      <Text style={styles.search_text}>{searchButton}    {item.moduleName}</Text>
+                      </View>
+                    </TouchableOpacity>
+                    )}
+                    keyExtractor={item => item.id}
+                  />
+                </View>
                 }
               </View>
             </SafeAreaView>
@@ -625,25 +625,25 @@ class Search extends React.Component {
                     </Text>
                   </View>
                 :
-                  <View style={styles.search_item}>
-                    {/* <Text>{this.state.keyword}</Text> */}
-                    <FlatList
-                      contentContainerStyle={styles.search_item}
-                      data ={this.state.searchData}
-                      renderItem={({item}) => (
-                      <TouchableOpacity
-                        onPress={() => {
-                          this.props.setPage(item.moduleName)
-                          this.setState({searching: !this.state.searching})
-                          }}>
-                        <View style={styles.search_result}>
-                        <Text style={styles.search_text}>{searchButton}    {item.moduleName}</Text>
-                        </View>
-                      // </TouchableOpacity>
-                      )}
-                      keyExtractor={item => item.id}
-                    />
-                  </View>
+                <View style={styles.search_item}>
+                {/* <Text>{this.state.keyword}</Text> */}
+                <FlatList
+                  contentContainerStyle={styles.search_item}
+                  data ={this.state.searchData}
+                  renderItem={({item}) => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      this.props.setPage(item.moduleName)
+                      this.setState({searching: !this.state.searching})
+                      }}>
+                    <View style={styles.search_result}>
+                    <Text style={styles.search_text}>{searchButton}    {item.moduleName}</Text>
+                    </View>
+                  </TouchableOpacity>
+                  )}
+                  keyExtractor={item => item.id}
+                />
+              </View>
               }
             </View>
           </SafeAreaView>
@@ -665,7 +665,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16
   },
   header_inner: {
-    flex:1,
     overflow: 'hidden',
     flexDirection: 'row',
     justifyContent: 'space-between',
