@@ -17,11 +17,11 @@
   Screenshots:
 </p>
 
-![1](./screenshots/jason1)
-![2](./screenshots/jason2)
-![3](./screenshots/jason3)
-![4](./screenshots/jason4)
-![5](./screenshots/jason5)
+![1](./screenshots/jason1.png)
+![2](./screenshots/jason2.png)
+![3](./screenshots/jason3.png)
+![4](./screenshots/jason4.png)
+![5](./screenshots/jason5.png)
 
 ## Jeff's Contributions
 
