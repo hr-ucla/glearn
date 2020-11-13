@@ -13,20 +13,14 @@
 <p float="left">
   Demo: https://youtu.be/GUc8ovaYhDE
 </p>
+<h3>Screenshots:</h3>
 <p float="left">
-  Screenshots:
-  <img alt="signin page" src="./screenshots/jason1.png" height="400" />
-  <img alt="google authentication" src="./screenshots/jason2.png" height="500" />
+  <img alt="signin page" src="./screenshots/jason1.png" height="600" />
+  <img alt="google authentication" src="./screenshots/jason2.png" height="600" />
   <img alt="deliverables module" src="./screenshots/jason3.png" height="600" />
-  <img alt="quiz description" src="./screenshots/jason4.png" height="700" />
-  <img alt="quiz content" src="./screenshots/jason5.png" height="800" />
+  <img alt="quiz description" src="./screenshots/jason4.png" height="600" />
+  <img alt="quiz content" src="./screenshots/jason5.png" height="600" />
 </p>
-
-![1](./screenshots/jason1.png)
-![2](./screenshots/jason2.png)
-![3](./screenshots/jason3.png)
-![4](./screenshots/jason4.png)
-![5](./screenshots/jason5.png)
 
 ## Jeff's Contributions
 
