@@ -23,4 +23,12 @@
 ## Jeff's Contributions
 
 ## Tim's Contributions
-
+<h3><b>Demo:</b> https://youtu.be/9nPMezDcUbY</h3>
+<h3>Screenshots:</h3>
+<p float="left">
+  <img alt="search bar results" src="./screenshots/tim1.png" height="600" />
+  <img alt="learning page content 1" src="./screenshots/tim2.png" height="600" />
+  <img alt="learning page content 2" src="./screenshots/tim3.png" height="600" />
+  <img alt="view slides from learning page" src="./screenshots/tim4.png" height="600" />
+  <img alt="play video from learning page" src="./screenshots/tim5.png" height="600" />
+</p>
